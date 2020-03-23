@@ -180,247 +180,61 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
 "--------------------------------------------------------------------------------
 "【lightline.vim】
 "--------------------------------------------------------------------------------
-"[2b60] Branch symbol
-"[2b61] LN (line) symbol
-"[2b62] FT symbol 1
-"[2b63] FT symbol 2
-"[2b64] Padlock (closed) symbol
-"[2b80] Hard right arrow
-"[2b81] Soft right arrow
-"[2b82] Hard left arrow
-"[2b83] Soft left arrow
 
-"let g:lightline = {
-"      \ 'colorscheme': 'solarized',
-"      \ 'active': {
-"      \   'left': [ [ 'mode', 'paste' ],
-"      \             [ 'fugitive', 'filename' ] ],
-"      \   'right': [ [ 'syntastic', 'lineinfo' ],
-"      \              [ 'percent' ],
-"      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
-"      \   },
-"      \ 'component_function': {
-"      \   'fugitive': 'LightlineFugitive',
-"      \   'filename': 'LightlineFilename',
-"      \   'readonly': 'LightlineReadonly',
-"      \   'modified': 'LightlineModified',
-"      \ },
-"      \ 'component_expand': {
-"      \   'syntastic': 'SyntasticStatuslineFlag',
-"      \ },
-"      \ 'component_type': {
-"      \   'syntastic': 'error',
-"      \ },
-"      \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-"      \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
-"      \ }
-"
-"    function! LightlineModified()
-"      if &filetype == "help"
-"        return ""
-"      elseif &modified
-"        return "+"
-"      elseif &modifiable
-"        return ""
-"      else
-"        return ""
-"      endif
-"    endfunction
-"
-"    function! LightlineReadonly()
-"      if &filetype == "help"
-"        return ""
-"      elseif &readonly
-"        return "\u2b64"
-"      else
-"        return ""
-"      endif
-"    endfunction
-"
-"    function! LightlineFugitive()
-"      if exists("*fugitive#head")
-"        let branch = fugitive#head()
-"        return branch !=# '' ? "\u2b60 ".branch : ''
-"      endif
-"      return ''
-"    endfunction
-"
    function! LightlineFilename()
      return ('' != expand('%:p') ? '[Buf:'.bufnr('%').'] '.expand('%:p') : '[Buf:'.bufnr('%').'] '.'(No Name)')
+     " return ('' != expand('%:p') ? expand('%:p') : '(No Name)')
    endfunction
 
-    "function! LightlineMode()
-    "    let fname = expand('%:t')
-    "    return fname == '__Tagbar__' ? 'Tagbar' :
-    "       \ fname == 'ControlP' ? 'CtrlP' :
-    "       \ fname == '__Gundo__' ? 'Gundo' :
-    "       \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-    "       \ fname =~ 'NERD_tree' ? 'NERDTree' :
-    "       \ &ft == 'unite' ? 'Unite' :
-    "       \ &ft == 'vimfiler' ? 'VimFiler' :
-    "       \ &ft == 'vimshell' ? 'VimShell' :
-    "       \ winwidth(0) > 60 ? lightline#mode() : ''
-    "endfunction
-    " let g:lightline = {
-      " \ 'colorscheme': 'wombat',
-      " \ }
+    function! LightlineReadonly()
+      return &readonly && &filetype !=# 'help' ? 'RO' : ''
+    endfunction
 
-
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'readonly': 'LightlineReadonly',
-      \   'modified': 'LightlineModified',
-      \ },
-      \ 'colorscheme': 'wombat',
-      \ }
-
-"--------------------------------------------------------------------------------
-" syntastic プラグインのための設定 
-" http://itchyny.hatenablog.com/entry/20130918/1379461406
-"--------------------------------------------------------------------------------
-    " let g:syntastic_mode_map = { 'mode': 'passive' }
-    " augroup AutoSyntastic
-    "     autocmd!
-    "     autocmd BufWritePost *.py,*.php call s:syntastic()
-    " augroup END
-    "
-    " function! s:syntastic()
-    "     SyntasticCheck
-    "     "call lightline#update()
+    " function! LightlineBufnum()
+    "   return '[Buf:'.bufnr('%').'] '
     " endfunction
 
-" "--------------------------------------------------------------------------------
-" "【neocomplete.vim】プラグイン 設定
-" "--------------------------------------------------------------------------------
-" "オフィシャルサイトのおすすめの設定
-" "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" " Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-" " Use neocomplete.
-" let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-"
-" " Define dictionary.
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"     \ 'default' : '',
-"     \ 'vimshell' : $HOME.'/.vimshell_hist',
-"     \ 'scheme' : $HOME.'/.gosh_completions'
-"         \ }
-"
-" " Define keyword.
-" if !exists('g:neocomplete#keyword_patterns')
-"     let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"
-" " Plugin key-mappings.
-" inoremap <expr><C-g>     neocomplete#undo_completion()
-" inoremap <expr><C-l>     neocomplete#complete_common_string()
-"
-" " Recommended key-mappings.
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"   " For no inserting <CR> key.
-"   "return pumvisible() ? "\<C-y>" : "\<CR>"
-" endfunction
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+let g:lightline = {
+          \ 'active': {
+          \   'left': [ 
+          \             ['mode','paste'],
+          \             ['readonly','filename'] 
+          \           ],
+          \  'right': [
+          \             [ 'lineinfo' ],
+          \             [ 'percent' ],
+          \             [ 'fileformat', 'fileencoding', 'filetype' ], 
+          \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]
+          \           ] 
+          \           },
+          \  'component_function': {
+          \        'filename': 'LightlineFilename',
+          \        'readonly': 'LightlineReadonly',
+          \  },
+          \ 'colorscheme': 'wombat',
+          \ }
 
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" " Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" "jedi+python3ではエラーになるので無効にする
-" "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" " Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 "--------------------------------------------------------------------------------
-"syntastic: Setting to Use python3 chcker will need Install package named pep8 And
-"pyflakes  Using pip Command like this -> (root) python3 -m pip install flake8
+"【lightline-ale.vim】
 "--------------------------------------------------------------------------------
-"let g:syntastic_python_checkers = ['flake8']
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
 
-"--------------------------------------------------------------------------------
-"vim-autopep8 Setting
-"--------------------------------------------------------------------------------
-"autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
 
-"Disable show diff window
-" let g:autopep8_disable_show_diff=1
-
-"--------------------------------------------------------------------------------
-"QuickRun Setting
-"--------------------------------------------------------------------------------
-""!!shoud keep Setting order.
-"let g:quickrun_config = {}
-"
-"let g:quickrun_config._ = {
-"      \ 'runner'    : 'vimproc',
-"      \ 'runner/vimproc/updatetime' : 10,
-"      \ 'outputter' : 'error',
-"      \ 'outputter/error/success' : 'buffer',
-"      \ 'outputter/error/error'   : 'quickfix',
-"      \ 'outputter/buffer/split'  : ':rightbelow 10sp',
-"      \ 'outputter/buffer/close_on_empty' : 1,
-"      \ 'hook/output_encode/enable' : 1,
-"      \ 'hook/output_encode/encoding' : 'shift_jis',
-"      \ }
-"
-"let g:quickrun_config.python = {
-"      \ 'command' : 'python3',
-"      \}
-
-"silent! nmap <unique><F5> <Plug>(quickrun)
-
-"autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-
-""--------------------------------------------------------------------------------
-""Rgrep.vim Setting
-""--------------------------------------------------------------------------------
-"let Grep_Default_Filelist = '*\.cs *\.aspx *\.aspx\.cs *\.html'
-"let Grep_Skip_Files = '*\.gif *\.GIF *\.jpg *\.dll *\.exe *\.pdb *\.cache *\.png'
-
-""--------------------------------------------------------------------------------
-""Align Setting
-""--------------------------------------------------------------------------------
-""日本語で使用するために
-"let g:Align_xstrlen = 3
-
+" let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
 
 "--------------------------------------------------------------------------------
 "Singleton Setting
@@ -457,11 +271,6 @@ nmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
-"--------------------------------------------------------------------------------
-"CtrlP Setting
-"--------------------------------------------------------------------------------
-
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:9999'
 
 
 "--------------------------------------------------------------------------------
@@ -604,19 +413,6 @@ command! Gbash call GitBash()
 
 
 "--------------------------------------------------------------------------------
-"YouCompleteMe Setting
-"--------------------------------------------------------------------------------
-"BugFix must fix youcompleteme.vim 180,7!
- let g:ycm_max_num_candidates = 30
- let g:ycm_autoclose_preview_window_after_completion=1
- let g:ycm_use_clangd = 0
-
-
- autocmd FileType python,java,c  noremap  <silent> <C-F8>  :YcmCompleter GoTo<CR>
- autocmd FileType python,java,c  nnoremap <silent> <C-F7>  :YcmCompleter GoToReferences<CR>
- autocmd FileType python,java,c  nnoremap <silent> <C-F5>  :YcmCompleter GetDoc<CR>
- 
-"--------------------------------------------------------------------------------
 "AsyncRun Setting
 "--------------------------------------------------------------------------------
 let g:asyncrun_open = 15
@@ -748,17 +544,80 @@ imap <C-x><C-u> <Plug>(asyncomplete_force_refresh)
 "   augroup end
 " endif
 "
-" deoplete Setting
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" " deoplete Setting
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#auto_complete_delay = 0
+" " 補完したあとに下に出てしまうWindowを表示しないようにする
+" set completeopt-=preview
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" vim-lsb Setting
+" vim-lsp Setting
 " Opens preview windows as normal windows
 let g:lsp_preview_float = 1
-" disable diagnostic 
+" カーソルにある定義を参照しているすべてのところをハイライトする
+let g:lsp_highlight_references_enabled = 1
+
+" disable diagnostic in lsp
 let g:lsp_diagnostics_enabled = 0
-" 補完したあとに下に出てしまうWindowを表示しないようにする
+
+"Ale plugin Setting that Check syntax in Vim asynchronously and fix files 
+"To use this plugin, first execute python -m pip install flake8.
+" 左端のシンボルカラムを表示したままにする
+let g:ale_sign_column_always = 1
+" let g:ale_change_sign_column_color = 1
+" シンボルを変更する
+let g:ale_sign_error = ' X'
+let g:ale_sign_warning = ' !'
+nmap <silent> gK <Plug>(ale_previous_wrap)
+nmap <silent> gJ <Plug>(ale_next_wrap)
+autocmd VimEnter * :highlight! ALEErrorSign ctermfg=9 ctermbg=8 guifg=#444444 guibg=#FA8072
+autocmd VimEnter * :highlight! ALEWarningSign ctermfg=11 ctermbg=8 guifg=#444444 guibg=#CCCC66
+" autocmd VimEnter * :highlight! ALESignColumnWithErrors ctermfg=0 ctermbg=8 guifg=#A5A5A5 guibg=#F5F5F5
+" autocmd VimEnter * :highlight! ALESignColumnWithoutErrors ctermfg=0 ctermbg=0 guifg=#A5A5A5 guibg=#F5F5F5
+" autocmd VimEnter * :highlight! ALEInfoSign   ctermfg=14 ctermbg=8 guifg=#ED6237 guibg=#FF9999
+" autocmd VimEnter * :highlight! ALEError ctermfg=9 ctermbg=8 guifg=#C30500 guibg=#FF9999
+" autocmd VimEnter * :highlight! ALEWarning ctermfg=11 ctermbg=8 guifg=#ED6237 guibg=#FF9999
+" autocmd VimEnter * :highlight! ALEInfo   ctermfg=14 ctermbg=8 guifg=#ED6237 guibg=#FF9999
+
+
+
+
+" asyncomplete plugin setting
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 set completeopt-=preview
+
+" asyncomplete buffer setting
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+let g:asyncomplete_buffer_clear_cache = 1
+
+" asyncomplete file setting
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+
+" " " vim vsnip setting
+" " You can use other key to expand snippet.
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+" imap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+" smap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+" imap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+" smap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'

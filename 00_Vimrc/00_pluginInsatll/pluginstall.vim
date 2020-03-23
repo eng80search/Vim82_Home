@@ -98,8 +98,6 @@ call plug#begin('$VIM/plugins')
     " " Adds file type icons to Vim plugins
     " Plug 'ryanoasis/vim-devicons'
 
-    " Check syntax in Vim asynchronously and fix files
-    Plug 'dense-analysis/ale'
 
     " have nodejs and yarn
     " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -121,21 +119,31 @@ call plug#begin('$VIM/plugins')
     " visually displaying indent levels in Vim
     Plug 'nathanaelkane/vim-indent-guides'
 
-    " Async Language Server Protocol plugin for vim8 and neovim.
     " vim-lsp plugin
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
 
-    " autocompletion plugin
-    " Plug 'prabirshrestha/asyncomplete.vim'
-    " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    " add syntax check feature in vim
+    Plug 'dense-analysis/ale'
+    Plug 'maximbaz/lightline-ale'
 
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    " add autocompletion feature in vim
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    Plug 'prabirshrestha/asyncomplete-file.vim'
 
-    Plug 'lighttiger2505/deoplete-vim-lsp'
+    " add snippet feature in vim
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
+
+
+    " " autocompletion plugin
+    " Plug 'Shougo/deoplete.nvim'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'roxma/vim-hug-neovim-rpc'
+    " Plug 'lighttiger2505/deoplete-vim-lsp'
 
     Plug 'posva/vim-vue', { 'for': ['vue'] }
 
