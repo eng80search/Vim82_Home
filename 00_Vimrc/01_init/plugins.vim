@@ -198,7 +198,7 @@ let g:lightline = {
           \ 'active': {
           \   'left': [ 
           \             ['mode','paste'],
-          \             ['readonly','filename'] 
+          \             ['readonly','modified','filename'] 
           \           ],
           \  'right': [
           \             [ 'lineinfo' ],
@@ -563,13 +563,25 @@ let g:lsp_highlight_references_enabled = 1
 let g:lsp_diagnostics_enabled = 0
 
 "Ale plugin Setting that Check syntax in Vim asynchronously and fix files 
-"To use this plugin, first execute python -m pip install flake8.
+"To use this plugin, need install checkTool like flake8.
 " 左端のシンボルカラムを表示したままにする
 let g:ale_sign_column_always = 1
 " let g:ale_change_sign_column_color = 1
 " シンボルを変更する
 let g:ale_sign_error = ' X'
 let g:ale_sign_warning = ' !'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+let g:ale_echo_msg_error_str = 'Error'
+let g:ale_echo_msg_warning_str = 'Warning'
+let g:ale_echo_msg_format = '[%linter%] [%severity%] %s '
+" Bind F8 to fixing problems with ALE
+nmap <F8> <Plug>(ale_fix)
+
+let g:lightline#ale#indicator_errors = 'Err:'
+let g:lightline#ale#indicator_warnings = 'War:'
+
 nmap <silent> gK <Plug>(ale_previous_wrap)
 nmap <silent> gJ <Plug>(ale_next_wrap)
 autocmd VimEnter * :highlight! ALEErrorSign ctermfg=9 ctermbg=8 guifg=#444444 guibg=#FA8072
@@ -580,9 +592,6 @@ autocmd VimEnter * :highlight! ALEWarningSign ctermfg=11 ctermbg=8 guifg=#444444
 " autocmd VimEnter * :highlight! ALEError ctermfg=9 ctermbg=8 guifg=#C30500 guibg=#FF9999
 " autocmd VimEnter * :highlight! ALEWarning ctermfg=11 ctermbg=8 guifg=#ED6237 guibg=#FF9999
 " autocmd VimEnter * :highlight! ALEInfo   ctermfg=14 ctermbg=8 guifg=#ED6237 guibg=#FF9999
-
-
-
 
 " asyncomplete plugin setting
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

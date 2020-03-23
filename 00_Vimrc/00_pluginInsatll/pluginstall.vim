@@ -127,6 +127,7 @@ call plug#begin('$VIM/plugins')
     " add syntax check feature in vim
     Plug 'dense-analysis/ale'
     Plug 'maximbaz/lightline-ale'
+    Plug 'vuejs/eslint-plugin-vue'
 
     " add autocompletion feature in vim
     Plug 'prabirshrestha/asyncomplete.vim'
