@@ -561,6 +561,9 @@ let g:lsp_highlight_references_enabled = 1
 
 " disable diagnostic in lsp
 let g:lsp_diagnostics_enabled = 0
+nmap <F1> :LspHover<CR>
+nmap <F3> :LspReferences<CR>
+nmap <F4> :LspDefinition<CR>
 
 "Ale plugin Setting that Check syntax in Vim asynchronously and fix files 
 "To use this plugin, need install checkTool like flake8.
@@ -572,12 +575,13 @@ let g:ale_sign_error = ' X'
 let g:ale_sign_warning = ' !'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+" let g:ale_open_list = 1
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s '
 " Bind F8 to fixing problems with ALE
-nmap <F8> <Plug>(ale_fix)
+nmap <F5> :ALELint<CR>
+nmap <F6> <Plug>(ale_fix)
 
 let g:lightline#ale#indicator_errors = 'Err:'
 let g:lightline#ale#indicator_warnings = 'War:'
@@ -621,12 +625,12 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ }))
 
 
-" " " vim vsnip setting
-" " You can use other key to expand snippet.
-imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-" imap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" smap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" imap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-" smap <expr> <S-Tab> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+" asyncomplete ultisnips setting
+if has('python3')
+    let g:UltiSnipsExpandTrigger="<c-j>"
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+endif

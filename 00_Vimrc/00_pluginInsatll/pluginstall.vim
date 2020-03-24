@@ -136,15 +136,9 @@ call plug#begin('$VIM/plugins')
     Plug 'prabirshrestha/asyncomplete-file.vim'
 
     " add snippet feature in vim
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'hrsh7th/vim-vsnip-integ'
-
-
-    " " autocompletion plugin
-    " Plug 'Shougo/deoplete.nvim'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'roxma/vim-hug-neovim-rpc'
-    " Plug 'lighttiger2505/deoplete-vim-lsp'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
     Plug 'posva/vim-vue', { 'for': ['vue'] }
 
