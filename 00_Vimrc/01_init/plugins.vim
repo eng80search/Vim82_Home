@@ -26,6 +26,7 @@ call NERDTreeHighlightFile('py',     'yellow',    'none', '#fcdb79', '#282c34')
 call NERDTreeHighlightFile('asp',    'yellow',    'none', '#B9B069', '#282c34')
 call NERDTreeHighlightFile('cs',     'yellow',    'none', '#c4f74f', '#282c34')
 call NERDTreeHighlightFile('js',     'Red',       'none', '#f0e68c', '#282c34')
+call NERDTreeHighlightFile('vue',    'Red',       'none', '#00CC99', '#282c34')
 call NERDTreeHighlightFile('htm',    'brown',     'none', '#ff7f50', '#282c34')
 call NERDTreeHighlightFile('html',   'brown',     'none', '#ff7f50', '#282c34')
 call NERDTreeHighlightFile('css',    'yellow',    'none', '#1e90ff', '#282c34')
@@ -628,9 +629,15 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
 " asyncomplete ultisnips setting
 if has('python3')
     let g:UltiSnipsExpandTrigger="<c-j>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    " let g:ultisnipsjumpbackwardtrigger="<c-k>"
     call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
         \ 'name': 'ultisnips',
         \ 'whitelist': ['*'],
         \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
         \ }))
 endif
+
+" vim-vue highlight setting
+autocmd FileType vue syntax sync fromstart

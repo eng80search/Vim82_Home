@@ -127,7 +127,11 @@ call plug#begin('$VIM/plugins')
     " add syntax check feature in vim
     Plug 'dense-analysis/ale'
     Plug 'maximbaz/lightline-ale'
-    Plug 'vuejs/eslint-plugin-vue'
+
+    " add snippet feature in vim
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
     " add autocompletion feature in vim
     Plug 'prabirshrestha/asyncomplete.vim'
@@ -135,12 +139,17 @@ call plug#begin('$VIM/plugins')
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
 
-    " add snippet feature in vim
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
-    Plug 'posva/vim-vue', { 'for': ['vue'] }
+    " Vim syntax highlighting for Vue components
+    " And also work in ALE with install eslint and eslint-plugin-vue using npm
+    Plug 'posva/vim-vue'
+
+    " A Vim plugin for Prettier
+    " Plug 'prettier/vim-prettier'
+    " post install (yarn install | npm install) then load plugin only for editing supported files
+    Plug 'prettier/vim-prettier', {
+                \ 'do': 'yarn install',
+                \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
     " NERD syntax highlighting
     " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
