@@ -76,7 +76,9 @@ call plug#begin('$VIM/plugins')
     " "A code-completion engine for Vim
     " Plug 'Valloric/YouCompleteMe'
 
-    "fuzzy finder Plugin
+    "fuzzy finder Plugin If have some error in vim please remove directory and reinstall this plugin
+    "this plugin necessary .but may be  get an error during installation. But don't worry.
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
     " " Git Plugin
@@ -137,6 +139,10 @@ call plug#begin('$VIM/plugins')
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+
+
+    " Viewer&Finder for LSP symbols and tags
+    Plug 'liuchengxu/vista.vim'
 
     " add autocompletion feature in vim
     Plug 'prabirshrestha/asyncomplete.vim'

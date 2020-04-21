@@ -95,6 +95,12 @@ autocmd BufWinEnter * call NERDTreeAutoUpdate()
 "close vim if the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+"--------------------------------------------------------------------------------
+"vim-fzf Setting
+"--------------------------------------------------------------------------------
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
+
 
 "--------------------------------------------------------------------------------
 "vim-nerdtree-syntax-highlight
