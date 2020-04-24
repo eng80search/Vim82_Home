@@ -9,6 +9,8 @@
  let s:keepcpo= &cpo
  set cpo&vim
 
+ " Fix files with prettier, and then ESLint.
+let b:ale_fixers = ['prettier', 'eslint']
 
  let b:next='\v^\s*function\s+\w+\(.*\)\s*(\n*\s*\{)@=|\vfunction\(.*\)\s*(\n*\s*\{)@='
  let b:prev='\v^\s*function\s+\w+\(.*\)\s*(\n*\s*\{)@=|\vfunction\(.*\)\s*(\n*\s*\{)@='

@@ -533,6 +533,7 @@ nmap <F4> :LspDefinition<CR>
 "To use this plugin, need install checkTool like flake8.
 " 左端のシンボルカラムを表示したままにする
 let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
 " let g:ale_change_sign_column_color = 1
 " シンボルを変更する
 let g:ale_sign_error = ' X'
@@ -549,6 +550,10 @@ nmap <F6> <Plug>(ale_fix)
 
 let g:lightline#ale#indicator_errors = 'Err:'
 let g:lightline#ale#indicator_warnings = 'War:'
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%][%code%]: %s [%severity%]'
 
 nmap <silent> gK <Plug>(ale_previous_wrap)
 nmap <silent> gJ <Plug>(ale_next_wrap)

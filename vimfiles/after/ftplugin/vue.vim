@@ -9,3 +9,6 @@ let b:did_ftplugin_vue = 1
 let b:ale_linter_aliases = ['javascript', 'vue']
 " Select the eslint and vls linters.
 let b:ale_linters = ['eslint', 'vls']
+
+" Fix files with prettier, and then ESLint.
+let b:ale_fixers = ['prettier', 'eslint']

@@ -339,3 +339,24 @@ set updatetime=2
 
 " 差分モードのファイルを一気に消す
 :command Bdd bd|bd
+
+" terminalの黒の背景色が灰色になった後に、再更新していないので、以下を設定
+if has('terminal')
+  function! s:set_default_ansi_colors() abort
+    if exists('g:terminal_ansi_colors')
+      return
+    endif
+
+    let g:terminal_ansi_colors = [
+      \ "#0c0c0c", "#c50f1f", "#13a10e", "#c19c00",
+      \ "#0037da", "#881798", "#3a96dd", "#cccccc",
+      \ "#767676", "#e74856", "#16c60c", "#eadf84",
+      \ "#3b78ff", "#b4009e", "#61d6d6", "#e8e8e8"
+      \ ]
+  endfunction
+  call s:set_default_ansi_colors()
+
+  augroup vimrc
+    autocmd ColorScheme * call s:set_default_ansi_colors()
+  augroup END
+endif
