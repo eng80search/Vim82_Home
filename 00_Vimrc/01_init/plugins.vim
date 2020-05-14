@@ -517,18 +517,36 @@ imap <C-x><C-u> <Plug>(asyncomplete_force_refresh)
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" ------------------------------------------------------------------
 " vim-lsp Setting
-" Opens preview windows as normal windows
-let g:lsp_preview_float = 1
-" カーソルにある定義を参照しているすべてのところをハイライトする
-let g:lsp_highlight_references_enabled = 1
 
-" disable diagnostic in lsp
-let g:lsp_diagnostics_enabled = 0
+" augroup MyLsp
+"      autocmd!
+"      if executable('pyls')
+"          autocmd User lsp_setup call lsp#register_server({
+"              \ 'name': 'pyls',
+"              \ 'cmd': { servier_info -> ['pyls'] },
+"              \ 'whitelist': ['python'],
+"              \ 'workspace_config': {
+"              \   'pyls': {
+"              \       'plugins': {
+"              \           'jedi_definition': {
+"              \               'follow_imports': v:true,
+"              \               'follow_builtin_imports': v:true
+"              \           },
+"              \ }}}
+"              \})
+"      endif
+"  augroup END
+ 
+ " sign の表示を無効化 ( ALE で行うため )
+ let g:lsp_diagnostics_enabled = 0
+" ショットカットキー
 nmap <F1> :LspHover<CR>
 nmap <F3> :LspReferences<CR>
 nmap <F4> :LspDefinition<CR>
 
+" ------------------------------------------------------------------
 "Ale plugin Setting that Check syntax in Vim asynchronously and fix files 
 "To use this plugin, need install checkTool like flake8.
 " 左端のシンボルカラムを表示したままにする

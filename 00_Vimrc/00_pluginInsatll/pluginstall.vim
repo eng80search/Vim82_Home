@@ -28,7 +28,7 @@ call plug#begin('$VIM/plugins')
     " Plug 'Shougo/neocomplete.vim'
 
     " ctrlp.vim Vim plugin for Fuzzy file
-    Plug 'kien/ctrlp.vim'
+    " Plug 'kien/ctrlp.vim'
 
     " vim-bufonly.vim Delete all the buffers except the current buffer
     Plug 'schickling/vim-bufonly'
@@ -154,6 +154,9 @@ call plug#begin('$VIM/plugins')
     " Vim syntax highlighting for Vue components
     " And also work in ALE with install eslint and eslint-plugin-vue using npm
     Plug 'posva/vim-vue'
+
+
+    " Plug 'puremourning/vimspector'
 
     " A Vim plugin for Prettier
     " Plug 'prettier/vim-prettier'
