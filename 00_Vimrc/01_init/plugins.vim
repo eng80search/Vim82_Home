@@ -12,6 +12,11 @@ let NERDTreeQuitOnOpen = 1 "ファイルを開いたら閉じる場合は1
 let g:NERDTreeShowBookmarks=1 "ブックマーク初期表示
 let NERDTreeWinSize = 40 "Windowsサイズ設定
 let g:NERDTreeCopycmd= 'cp -r '
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" lightlineを使うのでnerdtree自前のstatuslineを無効にする
+let g:NERDTreeStatusline = -1
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -130,6 +135,8 @@ let g:MRU_Use_CursorLine = 1
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 
+" let g:session_autosave = 'yes'
+" let g:session_autoload = 'yes'
 
 "--------------------------------------------------------------------------------
 "Tagbarの設定
@@ -195,37 +202,132 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
 "【lightline.vim】
 "--------------------------------------------------------------------------------
 
-   function! LightlineFilename()
-     return ('' != expand('%:p') ? '[Buf:'.bufnr('%').'] '.expand('%:p') : '[Buf:'.bufnr('%').'] '.'(No Name)')
+    function! LightlineMode()
+      let fname = expand('%:t')
+      return fname == '__Tagbar__' ? 'Tagbar' :
+            \ fname == 'ControlP' ? 'CtrlP' :
+            \ fname == '__Gundo__' ? 'Gundo' :
+            \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+            \ fname =~ 'NERD_tree' ?  'NERD_tree':
+            \ &ft == 'unite' ? 'Unite' :
+            \ &ft == 'vimfiler' ? 'VimFiler' :
+            \ &ft == 'vimshell' ? 'VimShell' :
+            \ winwidth(0) > 10 ? lightline#mode() : ''
+    endfunction
+
+    " function! LightlineMode()
+    "     return winwidth(0) > 60 ? lightline#mode() : ''
+    " endfunction
+
+   function! LightlineBuffername()
+     return  &filetype =~ 'help\|nerdtree' ? '' : 'Buf:['.bufnr('%').'] '
      " return ('' != expand('%:p') ? expand('%:p') : '(No Name)')
    endfunction
 
-    function! LightlineReadonly()
-      return &readonly && &filetype !=# 'help' ? 'RO' : ''
+   function! LightlineFilename()
+     " return ('' != expand('%:p') ? expand('%:p') : '(No Name)')
+     return ('' == expand('%:p') ? '(No Name)' : 
+                            \ &filetype == 'nerdtree' ? '' :
+                            \ &filetype == '' ? '' :
+                            \ winwidth(0) <=120 ? expand('%:t') : 
+                            \ winwidth(0) >120  ? expand('%:p') : ''
+            \)
+   endfunction
+
+   " バッファ編集禁止のときに鍵マークを表示 Terminalモードでは表示しない
+    function! LightlineModifiable()
+      " return (&readonly || !&modifiable) && &filetype !=# 'help' ? '' : ''
+      let fname = expand('%:t')
+      return !&modifiable && &filetype !=# 'help' && 
+             \ fname !~ 'NERD_tree' && 
+             \ &filetype != '' ? '' : ''
     endfunction
 
-    " function! LightlineBufnum()
-    "   return '[Buf:'.bufnr('%').'] '
-    " endfunction
+   " Readonlyモードの場合は目アイコンを表示
+    function! LightlineReadonly()
+      return &readonly && 
+             \ &filetype !=# 'help' && &filetype !~ 'nerdtree' ? '' : ''
+    endfunction
 
+   " バッファ編集ありの場合の設定 Terminalモードでは表示しない
+    function! LightlineModified()
+        " return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+        return &ft =~ 'help\|vimfiler\|gundo' || &filetype == '' ? '' : &modified ? '󿣪' : ''
+    endfunction
+
+   " filetypeによって一部の要素を隠す処理
+    function! LightlineVisible()
+        " return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+        return &ft != 'nerdtree'
+    endfunction
+
+   " filetypeによって一部の要素を隠す処理
+    function! LightlineLineInfo()
+        return LightlineVisible() ? printf("%3d:%-2d", line('.'), col('.')) : ''
+    endfunction
+
+   " filetypeによって一部の要素を隠す処理
+    function! LightlinePercent()
+        return LightlineVisible() ? (100 * line('.') / line('$')) . '%' : ''
+    endfunction
+
+   " filetypeによって一部の要素を隠す処理
+    function! LightlineFileformat()
+        " return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+        return LightlineVisible() ? &ff : ''
+    endfunction
+
+   " filetypeによって一部の要素を隠す処理
+    function! LightlineFileencoding()
+        " return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+        return LightlineVisible() ? &fenc : ''
+    endfunction
+
+   " filetypeによって一部の要素を隠す処理
+    function! LightlineFiletype()
+        " return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+        return LightlineVisible() ? &ft : ''
+    endfunction
+
+" lightlineの全部の設定
 let g:lightline = {
           \ 'active': {
-          \   'left': [ 
-          \             ['mode','paste'],
-          \             ['readonly','modified','filename'] 
-          \           ],
-          \  'right': [
-          \             [ 'lineinfo' ],
-          \             [ 'percent' ],
-          \             [ 'fileformat', 'fileencoding', 'filetype' ], 
-          \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]
-          \           ] 
+          \   'left':   [ 
+          \               ['mode','paste'],
+          \               ['modifiable','readonly','modified','buffername','filename'] 
+          \             ],
+          \  'right':   [
+          \               [ 'lineinfo' ],
+          \               [ 'percent' ],
+          \               [ 'fileformat', 'fileencoding', 'filetype' ],
+          \               [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
+          \             ] 
           \           },
           \  'component_function': {
-          \        'filename': 'LightlineFilename',
-          \        'readonly': 'LightlineReadonly',
+          \        'mode':         'LightlineMode',
+          \        'modified':     'LightlineModified',
+          \        'buffername':   'LightlineBuffername',
+          \        'filename':     'LightlineFilename',
+          \        'modifiable':   'LightlineModifiable',
+          \        'lineinfo':     'LightlineLineInfo',
+          \        'readonly':     'LightlineReadonly',
+          \        'percent':      'LightlinePercent',
+          \        'fileformat':   'LightlineFileformat',
+          \        'fileencoding': 'LightlineFileencoding',
+          \        'filetype':     'LightlineFiletype',
           \  },
+          \ 'separator': { 'left': '', 'right': '' },
+          \ 'subseparator': { 'left': '', 'right': '' },
           \ 'colorscheme': 'wombat',
+          \ }
+
+
+let g:lightline.component_type = {
+          \     'linter_checking': 'right',
+          \     'linter_infos':    'right',
+          \     'linter_warnings': 'warning',
+          \     'linter_errors':   'error',
+          \     'linter_ok':       'right',
           \ }
 
 
@@ -233,20 +335,20 @@ let g:lightline = {
 "【lightline-ale.vim】
 "--------------------------------------------------------------------------------
 let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
+          \  'linter_checking': 'lightline#ale#checking',
+          \  'linter_infos':    'lightline#ale#infos',
+          \  'linter_warnings': 'lightline#ale#warnings',
+          \  'linter_errors':   'lightline#ale#errors',
+          \  'linter_ok':       'lightline#ale#ok',
+          \ }
 
 let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
+          \  'linter_checking': 'right',
+          \  'linter_infos':    'right',
+          \  'linter_warnings': 'warning',
+          \  'linter_errors':   'error',
+          \  'linter_ok':       'right',
+          \ }
 
 " let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
 
@@ -554,8 +656,8 @@ let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 " let g:ale_change_sign_column_color = 1
 " シンボルを変更する
-let g:ale_sign_error = ' X'
-let g:ale_sign_warning = ' !'
+let g:ale_sign_error = '󿙘'
+let g:ale_sign_warning = '󿔥'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 " let g:ale_open_list = 1
@@ -566,8 +668,8 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s '
 nmap <F5> :ALELint<CR>
 nmap <F6> <Plug>(ale_fix)
 
-let g:lightline#ale#indicator_errors = 'Err:'
-let g:lightline#ale#indicator_warnings = 'War:'
+let g:lightline#ale#indicator_errors = '󿙘:'
+let g:lightline#ale#indicator_warnings = '󿔥:'
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -627,3 +729,11 @@ endif
 
 " vim-vue highlight setting
 autocmd FileType vue syntax sync fromstart
+
+" vim-devicons Setting with Cica Font
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
+" アイコン入力方法 : `[Ctrl+V]` > `[u]` > `e905`
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
+let g:webdevicons_conceal_nerdtree_brackets = 1

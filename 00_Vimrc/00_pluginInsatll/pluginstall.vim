@@ -2,8 +2,14 @@ call plug#begin('$VIM/plugins')
 
 " Make sure you use single quotes
 
+    " Adds file type icons to Vim plugins
+    Plug 'ryanoasis/vim-devicons'
+
     " NERD Tree
     Plug 'scrooloose/nerdtree'
+
+    "" nerdtree-execute
+    Plug 'ivalkeen/nerdtree-execute'
 
     " NERD commenter
     Plug 'scrooloose/nerdcommenter'
@@ -27,9 +33,6 @@ call plug#begin('$VIM/plugins')
     " neocomplete.vim
     " Plug 'Shougo/neocomplete.vim'
 
-    " ctrlp.vim Vim plugin for Fuzzy file
-    " Plug 'kien/ctrlp.vim'
-
     " vim-bufonly.vim Delete all the buffers except the current buffer
     Plug 'schickling/vim-bufonly'
 
@@ -45,8 +48,6 @@ call plug#begin('$VIM/plugins')
     " quick run Plugin 
     " Plug 'thinca/vim-quickrun'
 
-    "" nerdtree-execute
-    Plug 'ivalkeen/nerdtree-execute'
 
     "" python3 Plugin :automatically formats Python code need Install jedi  Labrary from pip
     Plug 'tell-k/vim-autopep8'
@@ -101,10 +102,6 @@ call plug#begin('$VIM/plugins')
     " if you don't have nodejs and yarn
     " use pre build
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-
-    " " Adds file type icons to Vim plugins
-    " Plug 'ryanoasis/vim-devicons'
-
 
     " have nodejs and yarn
     " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
