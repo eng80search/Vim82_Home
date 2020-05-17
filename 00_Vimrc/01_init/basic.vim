@@ -40,7 +40,7 @@ filetype plugin indent on
 "タブページを常に表示
 set showtabline=2
 ""gVimでもテキストベースのタブページを使う
-"set guioptions-=e
+" set guioptions-=e
 noremap <Tab> gt<CR>
 noremap <S-Tab> gT<CR>
 

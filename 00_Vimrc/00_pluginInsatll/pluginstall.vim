@@ -120,8 +120,11 @@ call plug#begin('$VIM/plugins')
     " A VIM multi-language debugger plugin
     Plug 'jayli/vim-easydebugger'
 
-    " visually displaying indent levels in Vim
-    Plug 'nathanaelkane/vim-indent-guides'
+    " " visually displaying indent levels in Vim
+    " Plug 'nathanaelkane/vim-indent-guides'
+
+    " A vim plugin to display the indention levels with thin vertical lines
+    Plug 'Yggdroot/indentLine'
 
     " vim-lsp plugin
     Plug 'prabirshrestha/async.vim'

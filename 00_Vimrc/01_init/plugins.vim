@@ -316,9 +316,12 @@ let g:lightline = {
           \        'fileencoding': 'LightlineFileencoding',
           \        'filetype':     'LightlineFiletype',
           \  },
-          \ 'separator': { 'left': '', 'right': '' },
-          \ 'subseparator': { 'left': '', 'right': '' },
-          \ 'colorscheme': 'wombat',
+          \  'separator': { 'left': '', 'right': '' },
+          \  'subseparator': { 'left': '', 'right': '' },
+          \  'colorscheme': 'wombat',
+          \  'enable': {
+          \    'tabline': 0
+          \  },
           \ }
 
 
@@ -552,16 +555,19 @@ nmap <F12>  <Plug>EasyDebuggerSetBreakPoint
 " let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
 
 "--------------------------------------------------------------------------------
-" vim-indent-guides setting
+" vim-indentLine setting
 "--------------------------------------------------------------------------------
-" Disable the plugin on Vim startUp
-let g:indent_guides_enable_on_vim_startup = 0
+" " Disable the plugin on Vim startUp
+" let g:indent_guides_enable_on_vim_startup = 0
+"
+" set ts=4 sw=4 et
+" let g:indent_guides_start_level=2
+" let g:indent_guides_guide_size=1
 
-set ts=4 sw=4 et
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
+let g:indentLine_enabled = 0
+let g:indentLine_char_list = ['│', '┊', '┆', '¦']
 
-autocmd FileType html,js,python IndentGuidesEnable
+autocmd FileType html,js,javascript,python IndentLinesEnable
 " autocmd FileType js IndentGuidesEnable
 
 " Vim8でvim-lspとasyncomplete関連でvue-language-serverを使う(細かいオプションは省略)
