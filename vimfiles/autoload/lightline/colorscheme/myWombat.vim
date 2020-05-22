@@ -20,7 +20,12 @@ let s:magenta = [ '#f2c68a', 216 ]
 let s:blue = [ '#8ac6f2', 117 ]
 let s:cyan = s:blue
 let s:green = [ '#95e454', 119 ]
+
+" 自作色
 let s:lintgreen = [ '#3cb371', 119 ]
+let s:gitblue = [ '#00a7db', 119 ]
+" let s:gitblue = [ '#0025db', 119 ]
+
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 let s:p.normal.left = [ [ s:base02, s:blue ], [ s:base3, s:base01 ] ]
 let s:p.normal.right = [ [ s:base02, s:base0 ], [ s:base1, s:base01 ] ]
@@ -37,7 +42,10 @@ let s:p.tabline.middle = [ [ s:base2, s:base02 ] ]
 let s:p.tabline.right = [ [ s:base2, s:base00 ] ]
 let s:p.normal.error = [ [ s:base03, s:red ] ]
 let s:p.normal.warning = [ [ s:base023, s:yellow ] ]
+
+" 自作
 let s:p.normal.ok = [ [ s:base023, s:lintgreen ] ]
+let s:p.normal.gitbranch_name = [ [ s:gitblue,s:base02 ] ]
 
 " 注意：colorscheme#後ろは必ず自分のcolorschemeを記入すること!
 let g:lightline#colorscheme#myWombat#palette = lightline#colorscheme#flatten(s:p)

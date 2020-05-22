@@ -313,7 +313,6 @@ let g:lightline = {
           \           },
           \  'component_function': {
           \        'mode':         'LightlineMode',
-          \        'gitbranch':    'LightlineGitbranch',
           \        'modified':     'LightlineModified',
           \        'buffername':   'LightlineBuffername',
           \        'filename':     'LightlineFilename',
@@ -352,6 +351,7 @@ let g:lightline.component_expand = {
           \  'linter_warnings': 'lightline#ale#warnings',
           \  'linter_errors':   'lightline#ale#errors',
           \  'linter_ok':       'lightline#ale#ok',
+          \  'gitbranch':       'LightlineGitbranch',
           \ }
 
 let g:lightline.component_type = {
@@ -360,6 +360,7 @@ let g:lightline.component_type = {
           \  'linter_warnings': 'warning',
           \  'linter_errors':   'error',
           \  'linter_ok':       'ok',
+          \  'gitbranch':       'gitbranch_name',
           \ }
 
 let g:lightline#ale#indicator_checking = "\uf110"
