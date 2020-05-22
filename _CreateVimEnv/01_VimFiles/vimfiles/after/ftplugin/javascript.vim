@@ -1,7 +1,7 @@
 " Vim filetype plugin file
 " Language: javascript
 "
- echo "This is Javascript ftplugin"
+ " echo "This is Javascript ftplugin"
 
  if exists("b:did_ftplugin_javascript") | finish | endif
  let b:did_ftplugin = 1
@@ -9,6 +9,8 @@
  let s:keepcpo= &cpo
  set cpo&vim
 
+ " Fix files with prettier, and then ESLint.
+let b:ale_fixers = ['prettier', 'eslint']
 
  let b:next='\v^\s*function\s+\w+\(.*\)\s*(\n*\s*\{)@=|\vfunction\(.*\)\s*(\n*\s*\{)@='
  let b:prev='\v^\s*function\s+\w+\(.*\)\s*(\n*\s*\{)@=|\vfunction\(.*\)\s*(\n*\s*\{)@='

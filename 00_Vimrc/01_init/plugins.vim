@@ -215,6 +215,14 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
             \ winwidth(0) > 10 ? lightline#mode() : ''
     endfunction
 
+    function! LightlineGitbranch()
+      let branchName = gitbranch#name()
+      return (branchName == '' ? '' : 
+            \ &filetype == 'nerdtree' ? '' :
+            \ &filetype == '' ? '' : ''.branchName 
+            \)
+    endfunction
+
     " function! LightlineMode()
     "     return winwidth(0) > 60 ? lightline#mode() : ''
     " endfunction
@@ -294,7 +302,7 @@ let g:lightline = {
           \ 'active': {
           \   'left':   [ 
           \               ['mode','paste'],
-          \               ['modifiable','readonly','modified','buffername','filename'] 
+          \               ['gitbranch','modifiable','readonly','modified','buffername','filename'] 
           \             ],
           \  'right':   [
           \               [ 'lineinfo' ],
@@ -305,6 +313,7 @@ let g:lightline = {
           \           },
           \  'component_function': {
           \        'mode':         'LightlineMode',
+          \        'gitbranch':    'LightlineGitbranch',
           \        'modified':     'LightlineModified',
           \        'buffername':   'LightlineBuffername',
           \        'filename':     'LightlineFilename',
@@ -318,20 +327,20 @@ let g:lightline = {
           \  },
           \  'separator': { 'left': '', 'right': '' },
           \  'subseparator': { 'left': '', 'right': '' },
-          \  'colorscheme': 'wombat',
+          \  'colorscheme': 'myWombat',
           \  'enable': {
           \    'tabline': 0
           \  },
           \ }
 
 
-let g:lightline.component_type = {
-          \     'linter_checking': 'right',
-          \     'linter_infos':    'right',
-          \     'linter_warnings': 'warning',
-          \     'linter_errors':   'error',
-          \     'linter_ok':       'right',
-          \ }
+" let g:lightline.component_type = {
+"           \     'linter_checking': 'right',
+"           \     'linter_infos':    'right',
+"           \     'linter_warnings': 'warning',
+"           \     'linter_errors':   'error',
+"           \     'linter_ok':       'right',
+"           \ }
 
 
 "--------------------------------------------------------------------------------
@@ -350,9 +359,10 @@ let g:lightline.component_type = {
           \  'linter_infos':    'right',
           \  'linter_warnings': 'warning',
           \  'linter_errors':   'error',
-          \  'linter_ok':       'right',
+          \  'linter_ok':       'ok',
           \ }
 
+let g:lightline#ale#indicator_checking = "\uf110"
 " let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
 
 "--------------------------------------------------------------------------------

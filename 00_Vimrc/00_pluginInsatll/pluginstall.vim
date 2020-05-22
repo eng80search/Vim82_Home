@@ -88,6 +88,9 @@ call plug#begin('$VIM/plugins')
     " A light and configurable statusline/tabline plugin for vim
     Plug 'itchyny/lightline.vim'
 
+    " Provides the branch name of the current git repository
+    Plug 'itchyny/vim-gitbranch'
+
     " A dark vim color scheme inspired by Atoms One Dark syntax theme
     Plug 'joshdick/onedark.vim'
 
