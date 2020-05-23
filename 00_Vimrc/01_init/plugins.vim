@@ -8,7 +8,7 @@
 "NERDTree Setting
 "--------------------------------------------------------------------------------
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 1 "ファイルを開いたら閉じる場合は1
+let NERDTreeQuitOnOpen = 0 "ファイルを開いたら閉じる場合は1
 let g:NERDTreeShowBookmarks=1 "ブックマーク初期表示
 let NERDTreeWinSize = 40 "Windowsサイズ設定
 let g:NERDTreeCopycmd= 'cp -r '
@@ -99,6 +99,8 @@ autocmd BufWinEnter * call NERDTreeAutoUpdate()
 
 "close vim if the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 特定のファイルではnerdtreeを表示する
+autocmd BufRead *.py,*.vue,*.js NERDTree
 
 "--------------------------------------------------------------------------------
 "vim-fzf Setting
@@ -219,6 +221,8 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
       let branchName = gitbranch#name()
       return (branchName == '' ? '' : 
             \ &filetype == 'nerdtree' ? '' :
+            \ &filetype == 'help' ? '' :
+            \ &filetype ~= 'tagbar' ? '' :
             \ &filetype == '' ? '' : ''.branchName 
             \)
     endfunction
@@ -228,7 +232,7 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
     " endfunction
 
    function! LightlineBuffername()
-     return  &filetype =~ 'help\|nerdtree' ? '' : 'Buf:['.bufnr('%').'] '
+     return  &filetype =~ 'help\|nerdtree\|tagbar' ? '' : 'Buf:['.bufnr('%').'] '
      " return ('' != expand('%:p') ? expand('%:p') : '(No Name)')
    endfunction
 
@@ -247,7 +251,8 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
       " return (&readonly || !&modifiable) && &filetype !=# 'help' ? '' : ''
       let fname = expand('%:t')
       return !&modifiable && &filetype !=# 'help' && 
-             \ fname !~ 'NERD_tree' && 
+             \ &filetype !~ 'nerdtree' && 
+             \ &filetype !~ 'tagbar' && 
              \ &filetype != '' ? '' : ''
     endfunction
 
@@ -266,7 +271,7 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
    " filetypeによって一部の要素を隠す処理
     function! LightlineVisible()
         " return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-        return &ft != 'nerdtree'
+        return &ft =~ 'nerdtree\|help\|tagbar' ? 0 : 1
     endfunction
 
    " filetypeによって一部の要素を隠す処理
