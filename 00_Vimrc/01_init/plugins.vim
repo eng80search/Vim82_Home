@@ -218,12 +218,13 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
     endfunction
 
     function! LightlineGitbranch()
+      " return   gitbranch#name()
       let branchName = gitbranch#name()
-      return (branchName == '' ? '' : 
+      return (branchName == '' ? '' :
             \ &filetype == 'nerdtree' ? '' :
             \ &filetype == 'help' ? '' :
-            \ &filetype ~= 'tagbar' ? '' :
-            \ &filetype == '' ? '' : ''.branchName 
+            \ &filetype =~ 'tagbar' ? '' :
+            \ &filetype == '' ? '' : ''.branchName
             \)
     endfunction
 
@@ -242,6 +243,7 @@ nmap <F8> :ToggleNERDTreeAndTagbar<CR>
                             \ &filetype == 'nerdtree' ? '' :
                             \ &filetype == '' ? '' :
                             \ winwidth(0) <=120 ? expand('%:t') : 
+                            \ winwidth(0) >120 && winwidth(0) - strlen(expand('%:p')) < 85 ? expand('%:t') : 
                             \ winwidth(0) >120  ? expand('%:p') : ''
             \)
    endfunction
