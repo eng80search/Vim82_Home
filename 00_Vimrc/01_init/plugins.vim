@@ -309,7 +309,8 @@ let g:lightline = {
           \ 'active': {
           \   'left':   [ 
           \               ['mode','paste'],
-          \               ['gitbranch','modifiable','readonly','modified','buffername','filename'] 
+          \               ['gitbranch','modifiable','readonly','modified','buffername'], 
+          \               ['filename'] 
           \             ],
           \  'right':   [
           \               [ 'lineinfo' ],
@@ -340,15 +341,6 @@ let g:lightline = {
           \ }
 
 
-" let g:lightline.component_type = {
-"           \     'linter_checking': 'right',
-"           \     'linter_infos':    'right',
-"           \     'linter_warnings': 'warning',
-"           \     'linter_errors':   'error',
-"           \     'linter_ok':       'right',
-"           \ }
-
-
 "--------------------------------------------------------------------------------
 "【lightline-ale.vim】
 "--------------------------------------------------------------------------------
@@ -370,7 +362,7 @@ let g:lightline.component_type = {
           \  'gitbranch':       'gitbranch_name',
           \ }
 
-let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_checking = ""
 " let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
 
 "--------------------------------------------------------------------------------
