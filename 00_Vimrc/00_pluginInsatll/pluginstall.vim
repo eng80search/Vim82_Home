@@ -171,6 +171,10 @@ call plug#begin('$VIM/plugins')
 
     " Japanese Vim Help
     Plug 'vim-jp/vimdoc-ja'
+    
+    " Display and vavigate marks
+    Plug 'kshenoy/vim-signature'
+
     " NERD syntax highlighting
     " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     "" dbext.vim

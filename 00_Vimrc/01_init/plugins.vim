@@ -100,7 +100,7 @@ autocmd BufWinEnter * call NERDTreeAutoUpdate()
 "close vim if the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " 特定のファイルではnerdtreeを表示する
-autocmd BufRead *.py,*.vue,*.js NERDTree
+autocmd BufRead *.py,*.vue,*.js if winnr("$") == 1 | NERDTree | endif
 
 "--------------------------------------------------------------------------------
 "vim-fzf Setting
@@ -575,9 +575,9 @@ nmap <F12>  <Plug>EasyDebuggerSetBreakPoint
 " let g:indent_guides_guide_size=1
 
 let g:indentLine_enabled = 0
-let g:indentLine_char_list = ['│', '┊', '┆', '¦']
+" let g:indentLine_char_list = ['│', '┊', '┆', '¦']
 
-autocmd FileType html,js,javascript,python IndentLinesEnable
+autocmd FileType html,js,javascript,python,vb IndentLinesEnable
 " autocmd FileType js IndentGuidesEnable
 
 " Vim8でvim-lspとasyncomplete関連でvue-language-serverを使う(細かいオプションは省略)
