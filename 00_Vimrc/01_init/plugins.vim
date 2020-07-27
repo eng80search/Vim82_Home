@@ -499,6 +499,8 @@ let $PYTHONUNBUFFERED=1
 autocmd FileType python noremap <silent><F9>  :AsyncRun python %<CR>
 autocmd FileType python noremap <silent><F10> :vert term  python -m ipdb %<CR>
 autocmd FileType python noremap <silent><F12> :AsyncStop <CR>
+" 文字化け対策用：quickfixのencodingに合わせる
+autocmd FileType python let g:asyncrun_encs = "cp932"
 
 autocmd FileType cs noremap <silent><F9>  :AsyncRun msbuild<CR>
 autocmd FileType cs noremap <silent><F12> :AsyncStop <CR>
@@ -716,7 +718,7 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \ 'blacklist': ['go'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ 'config': {
-    \    'max_buffer_size': 5000000,
+    \    'max_buffer_size': -1,
     \  },
     \ }))
 let g:asyncomplete_buffer_clear_cache = 1
