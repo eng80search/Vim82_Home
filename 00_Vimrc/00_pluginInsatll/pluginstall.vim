@@ -148,9 +148,11 @@ call plug#begin('$VIM/plugins')
     Plug 'liuchengxu/vista.vim'
 
     " add autocompletion feature in vim
-    Plug 'prabirshrestha/asyncomplete.vim'
+    " Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'eng80search/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    " Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    Plug 'eng80search/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
 
 

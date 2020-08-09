@@ -96,11 +96,12 @@ function! NERDTreeAutoUpdate()
 endfunction
 
 autocmd BufWinEnter * call NERDTreeAutoUpdate()
-
 "close vim if the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 特定のファイルではnerdtreeを表示する
-autocmd BufRead *.py,*.vue,*.js if winnr("$") == 1 | NERDTree | endif
+" 特定のファイルではnerdtreeを表示する。このコマンドは BufWinEnterが正常に動作しないみたい
+" なので、asyncomplete Buffer Pluginを正常動作させるためにwincmd wを入れてBufWinEnterを強制発生させた
+autocmd BufWinEnter *.py,*.vue,*.js if winnr("$") == 1 && v:this_session == "" | NERDTree | wincmd w | endif
+" autocmd BufWinEnter *.py,*.vue,*.js if winnr("$") == 1 | NERDTree | endif
 
 "--------------------------------------------------------------------------------
 "vim-fzf Setting
