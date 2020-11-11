@@ -387,7 +387,10 @@ map g/ <Plug>(incsearch-stay)
 "--------------------------------------------------------------------------------
  let g:pt_prg="pt  --smart-case"
  let g:pt_highlight=1
- 
+" Ptで正規表現 Pt! session\(.+\.tenpack\)
+" Session("acuuePC.freeWord")を検索する場合は
+" Pt! session.\"acuvuepc\.freeword\".
+" 注意：括弧は「.」で検索する。なぜか\でエスケープできない
 
 "--------------------------------------------------------------------------------
 "vim-easy-align Setting
@@ -403,28 +406,28 @@ vmap <Enter> <Plug>(EasyAlign)
 
 
 
-"--------------------------------------------------------------------------------
-"vim-bookmarks Setting
-"--------------------------------------------------------------------------------
-"マークの色設定
-
-let g:bookmark_sign = '>>'
-let g:bookmark_annotation_sign = '##'
-
-let g:bookmark_location_list = 1
-let g:bookmark_disable_ctrlp = 1
-
-let g:bookmark_no_default_key_mappings = 1
-
-
-nmap ml <Plug>BookmarkShowAll
-nmap md <Plug>BookmarkClear
-nmap mm <Plug>BookmarkToggle
-nmap mi <Plug>BookmarkAnnotate
-nmap mn <Plug>BookmarkNext
-nmap mp <Plug>BookmarkPrev
-nmap mx <Plug>BookmarkClearAll
-
+" "--------------------------------------------------------------------------------
+" "vim-bookmarks Setting
+" "--------------------------------------------------------------------------------
+" "マークの色設定
+"
+" let g:bookmark_sign = '>>'
+" let g:bookmark_annotation_sign = '##'
+"
+" let g:bookmark_location_list = 1
+" let g:bookmark_disable_ctrlp = 1
+"
+" let g:bookmark_no_default_key_mappings = 1
+"
+"
+" nmap ml <Plug>BookmarkShowAll
+" nmap md <Plug>BookmarkClear
+" nmap mm <Plug>BookmarkToggle
+" nmap mi <Plug>BookmarkAnnotate
+" nmap mn <Plug>BookmarkNext
+" nmap mp <Plug>BookmarkPrev
+" nmap mx <Plug>BookmarkClearAll
+"
 "--------------------------------------------------------------------------------
 "vim-python/python-syntax Setting
 "--------------------------------------------------------------------------------
@@ -671,7 +674,7 @@ nmap <F4> :LspDefinition<CR>
 "Ale plugin Setting that Check syntax in Vim asynchronously and fix files 
 "To use this plugin, need install checkTool like flake8.
 " 左端のシンボルカラムを表示したままにする
-let g:ale_sign_column_always = 1
+" let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 " let g:ale_change_sign_column_color = 1
 " シンボルを変更する
@@ -685,7 +688,8 @@ let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s '
 " Bind F8 to fixing problems with ALE
 nmap <F5> :ALELint<CR>
-nmap <F6> <Plug>(ale_fix)
+nmap <F8> :ALEFix<CR>
+" nmap <F6> <Plug>(ale_fix)
 
 let g:lightline#ale#indicator_errors = '󿙘:'
 let g:lightline#ale#indicator_warnings = '󿔥:'
@@ -756,3 +760,12 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
 let g:webdevicons_conceal_nerdtree_brackets = 1
+
+" Plugin 'E:\00_OurFamily\00_Develop\33_Git\00_vim82_Home\plugins\jsonformat'
+
+" mark操作
+" m.-> マーク追加削除 m(space)->すべてのマークを削除 m/->マークリスト一覧表示 `[ ->次のマークへジャンプ`
+
+" Disable The word under cursor:
+let g:vim_current_word#highlight_current_word = 0
+let g:vim_current_word#highlight_only_in_focused_window = 1

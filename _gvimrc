@@ -59,3 +59,8 @@ set ambiwidth=double
 
 " DirectXを有効にする
 set rop=type:directx,geom:1,renmode:5
+
+" vim_current_word setting
+" hi CurrentWordTwins guibg=#808080
+hi CurrentWordTwins guibg=#696969
+" hi CurrentWordTwins guibg=#cccccc

@@ -42,8 +42,8 @@ call plug#begin('$VIM/plugins')
     " vim-surround.vim Vim plugin for Improved incremental search
     Plug 'tpope/vim-surround'
 
-    " vim-bookmarks.vim Vim bookmark plugin
-    Plug 'MattesGroeger/vim-bookmarks'
+    " " vim-bookmarks.vim Vim bookmark plugin
+    " Plug 'MattesGroeger/vim-bookmarks'
 
     " quick run Plugin 
     " Plug 'thinca/vim-quickrun'
@@ -176,6 +176,12 @@ call plug#begin('$VIM/plugins')
     
     " Display and vavigate marks
     Plug 'kshenoy/vim-signature'
+
+    " jsonformat plugin 
+    Plug 'eng80search/jsonformat.vim'
+
+    " vim_current_word plugin 
+    Plug 'dominikduda/vim_current_word'
 
     " NERD syntax highlighting
     " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'

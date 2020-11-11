@@ -135,16 +135,16 @@ set guioptions-=T
 
 "********************************************************************************
 "検索単語がヒットした場合は、見やすくするために画面中央に表示する
-nmap n nzz
-nmap N Nzz
-nmap * *zz
-nmap # #zz
+" nmap n nzz
+" nmap N Nzz
+" nmap * *zz
+" nmap # #zz
 
 "段落移動後は画面真ん中に表示する
-nnoremap  { {zz
-nnoremap  } }zz
-nnoremap  [[ [[zz
-nnoremap  ]] ]]zz
+" nnoremap  { {zz
+" nnoremap  } }zz
+" nnoremap  [[ [[zz
+" nnoremap  ]] ]]zz
 
 "タグジャンプした後は、ジャンプ先を画面先頭に表示
 nnoremap  <C-]> <C-]>zz
