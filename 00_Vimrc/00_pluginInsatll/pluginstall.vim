@@ -30,9 +30,6 @@ call plug#begin('$VIM/plugins')
     " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
     Plug 'junegunn/vim-easy-align'
 
-    " neocomplete.vim
-    " Plug 'Shougo/neocomplete.vim'
-
     " vim-bufonly.vim Delete all the buffers except the current buffer
     Plug 'schickling/vim-bufonly'
 
@@ -41,13 +38,6 @@ call plug#begin('$VIM/plugins')
 
     " vim-surround.vim Vim plugin for Improved incremental search
     Plug 'tpope/vim-surround'
-
-    " " vim-bookmarks.vim Vim bookmark plugin
-    " Plug 'MattesGroeger/vim-bookmarks'
-
-    " quick run Plugin 
-    " Plug 'thinca/vim-quickrun'
-
 
     "" python3 Plugin :automatically formats Python code need Install jedi  Labrary from pip
     Plug 'tell-k/vim-autopep8'
@@ -74,16 +64,10 @@ call plug#begin('$VIM/plugins')
     "input support in written HTML &CSS 
     Plug 'mattn/emmet-vim'
 
-    " "A code-completion engine for Vim
-    " Plug 'Valloric/YouCompleteMe'
-
     "fuzzy finder Plugin If have some error in vim please remove directory and reinstall this plugin
     "this plugin necessary .but may be  get an error during installation. But don't worry.
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-
-    " " Git Plugin
-    " Plug 'tpope/vim-fugitive'
 
     " A light and configurable statusline/tabline plugin for vim
     Plug 'itchyny/lightline.vim'
@@ -93,7 +77,6 @@ call plug#begin('$VIM/plugins')
 
     " A dark vim color scheme inspired by Atoms One Dark syntax theme
     Plug 'joshdick/onedark.vim'
-
 
     " incsearch
     Plug 'haya14busa/incsearch.vim'
@@ -182,31 +165,5 @@ call plug#begin('$VIM/plugins')
 
     " vim_current_word plugin 
     Plug 'dominikduda/vim_current_word'
-
-    " NERD syntax highlighting
-    " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    "" dbext.vim
-    "Plug 'vim-scripts/dbext.vim'
-
-    "" twig syntax highlighting
-    "Plug 'evidens/vim-twig'
-
-
-    " Git Plugin shows a git diff in the gutter and stages/undoes hunks
-    " Plug 'airblade/vim-gitgutter'
-
-    "" NERDTree and Tagbar combined in one windows
-    "Plug 'pseewald/nerdtree-tagbar-combined'
-
-    "" Customize statusbar
-
-    "" powerline-extra-symbols
-    "Plug 'ryanoasis/powerline-extra-symbols'
-
-    "" grep.vim
-    "Plug 'vim-scripts/grep.vim'
-
-    "" python3 Plugin : debug Tool
-    "Plug 'joonty/vdebug'
 
 call plug#end()

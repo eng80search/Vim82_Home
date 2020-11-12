@@ -189,17 +189,6 @@ nmap <silent>,scp       :SQLU_CreateProcedure<CR>
 
 "vimに表示する行数設定
 "let dbext_default_buffer_lines=80
-"
-"--------------------------------------------------------------------------------
-"【tagbar.vim】プラグイン 関数一覧を表示する
-"--------------------------------------------------------------------------------
-"vbプログラムを認識できるように設定する
-" nmap <F12> :TagbarToggle<CR>
-
-"--------------------------------------------------------------------------------
-"【toggletagbar.vim】TagbarとNerdTreeプラグインを上下に配置するプラグイン
-"--------------------------------------------------------------------------------
-nmap <F8> :ToggleNERDTreeAndTagbar<CR>
 
 "--------------------------------------------------------------------------------
 "【lightline.vim】
@@ -404,30 +393,6 @@ nmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
-
-
-" "--------------------------------------------------------------------------------
-" "vim-bookmarks Setting
-" "--------------------------------------------------------------------------------
-" "マークの色設定
-"
-" let g:bookmark_sign = '>>'
-" let g:bookmark_annotation_sign = '##'
-"
-" let g:bookmark_location_list = 1
-" let g:bookmark_disable_ctrlp = 1
-"
-" let g:bookmark_no_default_key_mappings = 1
-"
-"
-" nmap ml <Plug>BookmarkShowAll
-" nmap md <Plug>BookmarkClear
-" nmap mm <Plug>BookmarkToggle
-" nmap mi <Plug>BookmarkAnnotate
-" nmap mn <Plug>BookmarkNext
-" nmap mp <Plug>BookmarkPrev
-" nmap mx <Plug>BookmarkClearAll
-"
 "--------------------------------------------------------------------------------
 "vim-python/python-syntax Setting
 "--------------------------------------------------------------------------------
@@ -456,7 +421,6 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
 
 "--------------------------------------------------------------------------------
 "andymass/vim-matchup Setting
@@ -516,14 +480,6 @@ autocmd FileType java noremap <silent><F9>  :AsyncRun java %:t:r<CR>
 autocmd FileType java noremap <silent><F12> :AsyncStop <CR>
 autocmd FileType java let g:asyncrun_encs = "cp932"
 
-" "--------------------------------------------------------------------------------
-" "Python3 Setting
-" "--------------------------------------------------------------------------------
-" " python3.7にアップしたあと、PluginのYouCompleteMeを実行すると、
-" " 警告メッセージが出たのでそれが出ないように追加
-" if has('python3')
-"     silent! python3 1
-" endif
 
 "--------------------------------------------------------------------------------
 "Markdown-preview setting
@@ -558,8 +514,6 @@ tmap <F10>  <Plug>EasyDebuggerContinue
 " 设置断点
 nmap <F12>  <Plug>EasyDebuggerSetBreakPoint
 
-
-
 "--------------------------------------------------------------------------------
 "ryanoasis/vim-devicons setting
 "--------------------------------------------------------------------------------
@@ -590,81 +544,8 @@ autocmd FileType html,js,javascript,python,vb IndentLinesEnable
 " [asyncomplete] Force refresh completion
 imap <C-x><C-u> <Plug>(asyncomplete_force_refresh)
 
-"
-" Vue
-"
-" [install]
-" npm i -g vue-language-server
-"
-" [command]
-" vls
-"
-
-" if executable('vls')
-"   augroup LspVls
-"     au!
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'vue-language-server',
-"         \ 'cmd': {server_info->['vls']},
-"         \ 'whitelist': ['vue'],
-"         \ 'initialization_options': {
-"         \         'config': {
-"         \             'html': {},
-"         \              'vetur': {
-"         \                  'validation': {}
-"         \              }
-"         \         }
-"         \     }
-"         \ })
-"
-"     " omnifunc
-"     au FileType vue setlocal omnifunc=lsp#complete
-"     " map
-"     au FileType vue nnoremap <buffer><silent> gd :<C-u>LspDefinition<CR>
-"     au FileType vue nnoremap <buffer><silent> gD :<C-u>LspReferences<CR>
-"     au FileType vue nnoremap <buffer><silent> gs :<C-u>LspDocumentSymbol<CR>
-"     au FileType vue nnoremap <buffer><silent> gS :<C-u>LspWorkspaceSymbol<CR>
-"     au FileType vue nnoremap <buffer><silent> gQ :<C-u>LspDocumentFormat<CR>
-"     au FileType vue vnoremap <buffer><silent> gQ :LspDocumentRangeFormat<CR>
-"     au FileType vue nnoremap <buffer><silent> K :<C-u>LspHover<CR>
-"     au FileType vue nnoremap <buffer><silent> <F1> :<C-u>LspImplementation<CR>
-"     au FileType vue nnoremap <buffer><silent> <F2> :<C-u>LspRename<CR>
-"   augroup end
-" endif
-"
-" " deoplete Setting
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_complete_delay = 0
-" " 補完したあとに下に出てしまうWindowを表示しないようにする
-" set completeopt-=preview
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" ------------------------------------------------------------------
-" vim-lsp Setting
-
-" augroup MyLsp
-"      autocmd!
-"      if executable('pyls')
-"          autocmd User lsp_setup call lsp#register_server({
-"              \ 'name': 'pyls',
-"              \ 'cmd': { servier_info -> ['pyls'] },
-"              \ 'whitelist': ['python'],
-"              \ 'workspace_config': {
-"              \   'pyls': {
-"              \       'plugins': {
-"              \           'jedi_definition': {
-"              \               'follow_imports': v:true,
-"              \               'follow_builtin_imports': v:true
-"              \           },
-"              \ }}}
-"              \})
-"      endif
-"  augroup END
- 
- " sign の表示を無効化 ( ALE で行うため )
- let g:lsp_diagnostics_enabled = 0
+" sign の表示を無効化 ( ALE で行うため )
+let g:lsp_diagnostics_enabled = 0
 " ショットカットキー
 nmap <F1> :LspHover<CR>
 nmap <F3> :LspReferences<CR>
@@ -702,12 +583,6 @@ nmap <silent> gK <Plug>(ale_previous_wrap)
 nmap <silent> gJ <Plug>(ale_next_wrap)
 autocmd VimEnter * :highlight! ALEErrorSign ctermfg=9 ctermbg=8 guifg=#444444 guibg=#FA8072
 autocmd VimEnter * :highlight! ALEWarningSign ctermfg=11 ctermbg=8 guifg=#444444 guibg=#CCCC66
-" autocmd VimEnter * :highlight! ALESignColumnWithErrors ctermfg=0 ctermbg=8 guifg=#A5A5A5 guibg=#F5F5F5
-" autocmd VimEnter * :highlight! ALESignColumnWithoutErrors ctermfg=0 ctermbg=0 guifg=#A5A5A5 guibg=#F5F5F5
-" autocmd VimEnter * :highlight! ALEInfoSign   ctermfg=14 ctermbg=8 guifg=#ED6237 guibg=#FF9999
-" autocmd VimEnter * :highlight! ALEError ctermfg=9 ctermbg=8 guifg=#C30500 guibg=#FF9999
-" autocmd VimEnter * :highlight! ALEWarning ctermfg=11 ctermbg=8 guifg=#ED6237 guibg=#FF9999
-" autocmd VimEnter * :highlight! ALEInfo   ctermfg=14 ctermbg=8 guifg=#ED6237 guibg=#FF9999
 
 " asyncomplete plugin setting
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
