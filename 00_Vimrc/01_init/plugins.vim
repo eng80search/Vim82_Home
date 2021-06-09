@@ -464,20 +464,20 @@ command! Gbash call GitBash()
 "--------------------------------------------------------------------------------
 let g:asyncrun_open = 15
 let $PYTHONUNBUFFERED=1
-autocmd FileType python noremap <silent><F9>  :AsyncRun python %<CR>
-autocmd FileType python noremap <silent><F10> :vert term  python -m ipdb %<CR>
-autocmd FileType python noremap <silent><F12> :AsyncStop <CR>
+" autocmd FileType python noremap <silent><F9>  :AsyncRun python %<CR>
+" autocmd FileType python noremap <silent><F10> :vert term  python -m ipdb %<CR>
+" autocmd FileType python noremap <silent><F12> :AsyncStop <CR>
 " 文字化け対策用：quickfixのencodingに合わせる
 autocmd FileType python let g:asyncrun_encs = "cp932"
 
-autocmd FileType cs noremap <silent><F9>  :AsyncRun msbuild<CR>
-autocmd FileType cs noremap <silent><F12> :AsyncStop <CR>
+" autocmd FileType cs noremap <silent><F9>  :AsyncRun msbuild<CR>
+" autocmd FileType cs noremap <silent><F12> :AsyncStop <CR>
 autocmd FileType cs let g:asyncrun_encs = "cp932"
 
 
-autocmd FileType java noremap <silent><F8>  :AsyncRun javac  -encoding UTF-8 %<CR>
-autocmd FileType java noremap <silent><F9>  :AsyncRun java %:t:r<CR>
-autocmd FileType java noremap <silent><F12> :AsyncStop <CR>
+" autocmd FileType java noremap <silent><F8>  :AsyncRun javac  -encoding UTF-8 %<CR>
+" autocmd FileType java noremap <silent><F9>  :AsyncRun java %:t:r<CR>
+" autocmd FileType java noremap <silent><F12> :AsyncStop <CR>
 autocmd FileType java let g:asyncrun_encs = "cp932"
 
 
@@ -486,33 +486,6 @@ autocmd FileType java let g:asyncrun_encs = "cp932"
 "--------------------------------------------------------------------------------
 autocmd FileType markdown noremap <silent><C-p>  :MarkdownPreview<CR>
 
-"--------------------------------------------------------------------------------
-"vim-easydebugger
-"--------------------------------------------------------------------------------
-" Vim-EasyDebugger 快捷键配置
-" 启动 NodeJS/Python/Go 调试
-nmap <S-R>  <Plug>EasyDebuggerInspect
-" 启动 NodeJS 的 Web 调试模式
-nmap <S-W>  <Plug>EasyDebuggerWebInspect
-" 关闭调试
-nmap <S-E>  <Plug>EasyDebuggerExit
-" 暂停程序
-nmap <F6>   <Plug>EasyDebuggerPause
-tmap <F6>   <Plug>EasyDebuggerPause
-" 跳出函数
-nmap <F7>   <Plug>EasyDebuggerStepOut
-tmap <F7>   <Plug>EasyDebuggerStepOut
-" 进入函数
-nmap <F8>   <Plug>EasyDebuggerStepIn
-tmap <F8>   <Plug>EasyDebuggerStepIn
-" 单步执行
-nmap <F9>   <Plug>EasyDebuggerNext
-tmap <F9>   <Plug>EasyDebuggerNext
-" Continue
-nmap <F10>  <Plug>EasyDebuggerContinue
-tmap <F10>  <Plug>EasyDebuggerContinue
-" 设置断点
-nmap <F12>  <Plug>EasyDebuggerSetBreakPoint
 
 "--------------------------------------------------------------------------------
 "ryanoasis/vim-devicons setting
@@ -560,16 +533,23 @@ let g:ale_set_highlights = 0
 " let g:ale_change_sign_column_color = 1
 " シンボルを変更する
 let g:ale_sign_error = '󿙘'
+" let g:ale_sign_error = ''
 let g:ale_sign_warning = '󿔥'
+" let g:ale_sign_warning = ''
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 " let g:ale_open_list = 1
+
+" grepの検索結果もquickfixに表示されるので、ファイルを開いた瞬間にlintをすると
+" grepの結果がクリアされるので、これを防ぐために無効化する
+let g:ale_lint_on_enter = 0
+
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s '
 " Bind F8 to fixing problems with ALE
-nmap <F5> :ALELint<CR>
-nmap <F8> :ALEFix<CR>
+" nmap <F5> :ALELint<CR>
+" nmap <F8> :ALEFix<CR>
 " nmap <F6> <Plug>(ale_fix)
 
 let g:lightline#ale#indicator_errors = '󿙘:'
@@ -581,8 +561,10 @@ let g:ale_echo_msg_format = '[%linter%][%code%]: %s [%severity%]'
 
 nmap <silent> gK <Plug>(ale_previous_wrap)
 nmap <silent> gJ <Plug>(ale_next_wrap)
-autocmd VimEnter * :highlight! ALEErrorSign ctermfg=9 ctermbg=8 guifg=#444444 guibg=#FA8072
-autocmd VimEnter * :highlight! ALEWarningSign ctermfg=11 ctermbg=8 guifg=#444444 guibg=#CCCC66
+autocmd VimEnter * :highlight! ALEErrorSign ctermfg=9 ctermbg=8 guifg=#FA8072
+autocmd VimEnter * :highlight! ALEWarningSign ctermfg=11 ctermbg=8 guifg=#CCCC66
+" autocmd VimEnter * :highlight! ALEErrorSign ctermfg=9 ctermbg=8 guifg=#444444 guibg=#FA8072
+" autocmd VimEnter * :highlight! ALEWarningSign ctermfg=11 ctermbg=8 guifg=#444444 guibg=#CCCC66
 
 " asyncomplete plugin setting
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -644,3 +626,66 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 " Disable The word under cursor:
 let g:vim_current_word#highlight_current_word = 0
 let g:vim_current_word#highlight_only_in_focused_window = 1
+
+"---------------------- vimspector setting----------------------
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+" Change some key mappings
+nmap <silent><F6> :call vimspector#RunToCursor()<CR>
+nmap <silent><F7> :call vimspector#Restart()<CR>
+nmap <silent><F8> :call vimspector#Reset()<CR>
+
+" カーソルにある変数の値を表示
+map <Leader>f  <Plug>VimspectorBalloonEval
+
+" Set debug configure file base dir
+let g:vimspector_base_dir = expand( '$VIM/vimfiles' )
+" Set the basic sizes
+let g:vimspector_sidebar_width = 60
+
+" vimfiles\after\syntax\syncolor.vimに自分用のハイライトが定義されている
+
+sign define vimspectorBP         text=\  texthl=ErrorMsg
+sign define vimspectorBPCond     text=\ 󿰉 texthl=ErrorMsg
+sign define vimspectorBPDisabled text=\  texthl=LineNr
+sign define vimspectorPC         text=\ 󿠕 texthl=MyDebugCurrentIndicator linehl=MyDebugCurrentLine
+sign define vimspectorPCBP       text=\ 󿠔 texthl=MyDebugCurrentIndicator linehl=MyDebugCurrentLine
+
+" 数値が大きいほうが優先度が高い（他の印に邪魔されない）
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         997,
+  \    'vimspectorBPCond':     996,
+  \    'vimspectorBPDisabled': 995,
+  \    'vimspectorPCBP':       998,
+  \    'vimspectorPC':         999,
+  \ }
+
+" sign define vimspectorPC         text=\ 󿠕 texthl=MatchParen linehl=CursorLine
+" sign define vimspectorPCBP       text=\ 󿠔 texthl=MatchParen linehl=CursorLine
+
+function! CustomiseUI()
+    call win_gotoid( g:vimspector_session_windows.code )
+    " Clear the existing WinBar created by Vimspector
+    nunmenu WinBar
+    " Cretae our own WinBar
+    " nnoremenu WinBar.󿱢\ Stop :call vimspector#Stop()<CR>
+    nnoremenu WinBar.▶\ Continue :call vimspector#Continue()<CR>
+    nnoremenu WinBar.󿣣\ Pause :call vimspector#Pause()<CR>
+    nnoremenu WinBar.󿚼\ Next :call vimspector#StepOver()<CR>
+    nnoremenu WinBar.󿚺\ StepIn :call vimspector#StepInto()<CR>
+    nnoremenu WinBar.󿚻\ StepOut :call vimspector#StepOut()<CR>
+    nnoremenu WinBar.󿥘\ Restart :call vimspector#Restart()<CR>
+    nnoremenu WinBar.󿱢\ Stop :call vimspector#Reset()<CR>
+
+    " デバッグ時のハイライトを表示するため、現在行のハイライト設定をクリアする
+    set nocursorline nocursorcolumn
+endfunction
+
+augroup MyVimspectorUICustomistaion
+  autocmd!
+  autocmd User VimspectorUICreated call CustomiseUI()
+augroup END
+
+" let g:ycm_semantic_triggers =  {
+"   \   'VimspectorPrompt': [ '.', '->', ':', '<' ]
+" }
+

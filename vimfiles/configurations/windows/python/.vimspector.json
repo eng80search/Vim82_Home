@@ -1,0 +1,25 @@
+
+{
+  "configurations": {
+    "<name>: Launch": {
+      "adapter": "debugpy",
+      "configuration": {
+        "name": "<name>: Launch",
+        "type": "python",
+        "request": "launch",
+        "cwd": "${fileDirname}",
+        "python": "python.exe",
+        "stopOnEntry": true,
+        "console": "internalConsole",
+        "debugOptions": [],
+        "program": "${file}"
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "uncaught": "Y"
+        }
+      }
+    }
+  }
+}

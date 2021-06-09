@@ -17,14 +17,38 @@ let b:ale_fixers = ['autopep8', 'yapf', 'black']
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
 
-function! Debug()
+ " let b:next='\vdef\s+\w+\(\s*.*\s*\):'
+ " let b:prev='\vdef\s+\w+\(\s*.*\s*\):'
 
-    only
-    " Tagbar
-    vsplit
-    term python -m ipdb %
-    " vert term python -m ipdb %
-endfunction
+ let b:next='\vdef\s+\w+\(\_.*\):'
+ let b:prev='\vdef\s+\w+\(\_.*\):'
 
-command! -nargs=0 Debug call Debug()
+ execute "nnoremap <silent> <buffer> ]] :call <SID>Python_jump(b:next, 'forward')<CR>"
+ execute "nnoremap <silent> <buffer> [[ :call <SID>Python_jump(b:prev, 'backward')<CR>"
+
+ if !exists('*<SID>Python_jump')
+     fun! <SID>Python_jump(pattern, mode)
+
+         " normal! 0
+
+        if a:mode == 'forward'
+            call search(a:pattern)
+        else
+            call search(a:pattern, 'b')
+        endif
+
+        " normal! ^
+    endfun
+endif
+
+" function! Debug()
+"
+"     only
+"     " Tagbar
+"     vsplit
+"     term python -m ipdb %
+"     " vert term python -m ipdb %
+" endfunction
+"
+" command! -nargs=0 Debug call Debug()
 

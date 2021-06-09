@@ -144,14 +144,14 @@ call plug#begin('$VIM/plugins')
     Plug 'posva/vim-vue'
 
 
-    " Plug 'puremourning/vimspector'
+    Plug 'puremourning/vimspector'
 
     " A Vim plugin for Prettier
-    " Plug 'prettier/vim-prettier'
+    Plug 'prettier/vim-prettier'
     " post install (yarn install | npm install) then load plugin only for editing supported files
-    " Plug 'prettier/vim-prettier', {
-    "             \ 'do': 'yarn install',
-    "             \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+    Plug 'prettier/vim-prettier', {
+                \ 'do': 'yarn install',
+                \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 
     " Japanese Vim Help
