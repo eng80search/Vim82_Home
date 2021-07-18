@@ -363,3 +363,16 @@ if has('terminal')
     autocmd ColorScheme * call s:set_default_ansi_colors()
   augroup END
 endif
+
+" VimのWindowサイズを変更する際に、複数のWindowの場合は、高さ、幅を均等にする
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 85 width
+    " autocmd WinEnter * :call ResizeSplits()
+    autocmd VimResized * :call ResizeSplits()
+augroup END
+
+function! ResizeSplits()
+    " set winwidth=85
+    wincmd =
+endfunction
