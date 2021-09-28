@@ -123,6 +123,19 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case  --sort path '.<q-args>, 1,
   \   fzf#vim#with_preview(), <bang>0)
 
+" rg があれば使う
+ if executable('rg')
+   " set grepprg=rg\ --vimgrep
+   let &grepprg= 'rg --vimgrep --smart-case'
+   set grepformat=%f:%l:%c:%m
+ endif
+
+" 自動QuickFix
+augroup GrepCmd
+    autocmd!
+    autocmd QuickFixCmdPost vim,grep,make if len(getqflist()) != 0 | cwindow | endif
+augroup END
+ 
 
 "--------------------------------------------------------------------------------
 "vim-nerdtree-syntax-highlight
