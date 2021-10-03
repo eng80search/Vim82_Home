@@ -1,3 +1,5 @@
 
 # 特定のフォルダ
 plugins/
+vimfiles/gadgets/
+.gitignore
