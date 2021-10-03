@@ -19,6 +19,10 @@ let b:ale_warn_about_trailing_whitespace = 0
 
  " let b:next='\vdef\s+\w+\(\s*.*\s*\):'
  " let b:prev='\vdef\s+\w+\(\s*.*\s*\):'
+ 
+if !exists("current_compiler")
+  compiler python
+endif
 
  let b:next='\vdef\s+\w+\(\_.*\):'
  let b:prev='\vdef\s+\w+\(\_.*\):'
@@ -40,15 +44,4 @@ let b:ale_warn_about_trailing_whitespace = 0
         " normal! ^
     endfun
 endif
-
-" function! Debug()
-"
-"     only
-"     " Tagbar
-"     vsplit
-"     term python -m ipdb %
-"     " vert term python -m ipdb %
-" endfunction
-"
-" command! -nargs=0 Debug call Debug()
 

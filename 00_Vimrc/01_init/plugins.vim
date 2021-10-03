@@ -133,7 +133,7 @@ command! -bang -nargs=* Rg
 " 自動QuickFix
 augroup GrepCmd
     autocmd!
-    autocmd QuickFixCmdPost vim,grep,make if len(getqflist()) != 0 | cwindow | endif
+    autocmd QuickFixCmdPost vim,grep,make if len(getqflist()) != 0 | copen | endif
 augroup END
  
 
