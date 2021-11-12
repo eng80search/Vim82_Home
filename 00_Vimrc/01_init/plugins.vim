@@ -123,7 +123,12 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case  --sort path '.<q-args>, 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-" rg があれば使う
+" rgがあれば:grepでrgを使う
+" 使用例：Session("acuvuePC.freeword")を検索する際に
+" grep!session.\"acuvuepc\.freeword\".
+" 注意点：
+" 1.エスケープする際には\を使う
+" 2.なぜか「(」と「)」は検索できないため、「.」で代用する
  if executable('rg')
    " set grepprg=rg\ --vimgrep
    let &grepprg= 'rg --vimgrep --smart-case'
@@ -398,15 +403,15 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 
-"--------------------------------------------------------------------------------
-"pt Setting
-"--------------------------------------------------------------------------------
- let g:pt_prg="pt  --smart-case"
- let g:pt_highlight=1
-" Ptで正規表現 Pt! session\(.+\.tenpack\)
-" Session("acuuePC.freeWord")を検索する場合は
-" Pt! session.\"acuvuepc\.freeword\".
-" 注意：括弧は「.」で検索する。なぜか\でエスケープできない
+" "--------------------------------------------------------------------------------
+" "pt Setting
+" "--------------------------------------------------------------------------------
+"  let g:pt_prg="pt  --smart-case"
+"  let g:pt_highlight=1
+" " Ptで正規表現 Pt! session\(.+\.tenpack\)
+" " Session("acuuePC.freeWord")を検索する場合は
+" " Pt! session.\"acuvuepc\.freeword\".
+" " 注意：括弧は「.」で検索する。なぜか\でエスケープできない
 
 "--------------------------------------------------------------------------------
 "vim-easy-align Setting
