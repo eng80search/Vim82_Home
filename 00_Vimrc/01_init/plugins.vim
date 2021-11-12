@@ -719,3 +719,42 @@ augroup END
 "   \   'VimspectorPrompt': [ '.', '->', ':', '<' ]
 " }
 
+
+
+"--------------------------------------------------------------------------------
+"Startify Setting
+"--------------------------------------------------------------------------------
+
+let g:startify_files_number = 10
+let g:startify_custom_indices = ['f', 'j', 'd', 'k', 's',
+                               \ 'l', 'a', ';', 'g', 'h']
+
+let g:startify_session_autoload = 1
+
+let g:startify_list_order = [
+        \ ['  Recently used files:'],
+        \ 'files',
+        \ ['  Recently used files(Current directory):'],
+        \ 'dir',
+        \ ['󿘵  Session:'],
+        \ 'sessions',
+        \ ['󿜺  Bookmarks:'],
+        \ 'bookmarks',
+        \ ]
+let g:startify_bookmarks = ["E:\\00_OurFamily\\00_Develop\\33_MyGit\\11_MyScript",
+                          \ "E:\\00_OurFamily\\00_Develop\\33_MyGit\\00_vim82_Home\\_vimrc",
+                          \ "E:\\00_OurFamily\\00_Develop\\33_MyGit\\00_vim82_Home\\00_Vimrc\\00_pluginInsatll\\pluginstall.vim"
+                          \]
+
+let g:startify_custom_header = [
+            \'                                                           ',
+            \'  /$$    /$$ /$$                      /$$$$$$      /$$$$$$ ',
+            \' | $$   | $$|__/                     /$$__  $$    /$$__  $$',
+            \' | $$   | $$ /$$ /$$$$$$/$$$$       | $$  \ $$   |__/  \ $$',
+            \' |  $$ / $$/| $$| $$_  $$_  $$      |  $$$$$$/     /$$$$$$/',
+            \'  \  $$ $$/ | $$| $$ \ $$ \ $$       >$$__  $$    /$$____/ ',
+            \'   \  $$$/  | $$| $$ | $$ | $$      | $$  \ $$   | $$      ',
+            \'    \  $/   | $$| $$ | $$ | $$      |  $$$$$$//$$| $$$$$$$$',
+            \'     \_/    |__/|__/ |__/ |__/       \______/|__/|________/',
+            \'                                                           ',
+    \]

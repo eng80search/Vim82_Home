@@ -166,4 +166,7 @@ call plug#begin('$VIM/plugins')
     " vim_current_word plugin 
     Plug 'dominikduda/vim_current_word'
 
+    " vim_startify plugin
+    Plug 'mhinz/vim-startify'
+
 call plug#end()
