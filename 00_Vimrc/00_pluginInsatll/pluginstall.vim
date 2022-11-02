@@ -9,10 +9,10 @@ call plug#begin('$VIM/plugins')
     Plug 'scrooloose/nerdtree'
 
     "" nerdtree-execute
-    Plug 'ivalkeen/nerdtree-execute'
+    " Plug 'ivalkeen/nerdtree-execute'
 
     " NERD commenter
-    Plug 'scrooloose/nerdcommenter'
+    " Plug 'scrooloose/nerdcommenter'
 
     " vim-session
     Plug 'xolox/vim-misc'
@@ -56,7 +56,7 @@ call plug#begin('$VIM/plugins')
     Plug 'andymass/vim-matchup'
 
     "A Vim plugin for Windows PowerShell support
-    Plug 'PProvost/vim-ps1'
+    " Plug 'PProvost/vim-ps1'
 
     "improved Javascript indentation and syntax support in Vim
     Plug 'pangloss/vim-javascript'
@@ -131,8 +131,8 @@ call plug#begin('$VIM/plugins')
     Plug 'liuchengxu/vista.vim'
 
     " add autocompletion feature in vim
-    " Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'eng80search/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    " Plug 'eng80search/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'eng80search/asyncomplete-buffer.vim'
@@ -143,8 +143,7 @@ call plug#begin('$VIM/plugins')
     " And also work in ALE with install eslint and eslint-plugin-vue using npm
     Plug 'posva/vim-vue'
 
-
-    Plug 'puremourning/vimspector'
+    " Plug 'puremourning/vimspector'
 
     " A Vim plugin for Prettier
     Plug 'prettier/vim-prettier'
