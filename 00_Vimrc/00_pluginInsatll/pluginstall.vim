@@ -168,4 +168,7 @@ call plug#begin('$VIM/plugins')
     " vim_startify plugin
     Plug 'mhinz/vim-startify'
 
+    " vim_startify plugin
+    Plug 'vim-scripts/vim-auto-save'
+
 call plug#end()

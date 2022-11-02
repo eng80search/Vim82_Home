@@ -627,3 +627,13 @@ let g:startify_custom_header = [
             \'     \_/    |__/|__/ |__/ |__/       \______/|__/|________/',
             \'                                                           ',
     \]
+
+"----------------------------------------
+" AutoSave plugin Setting
+"----------------------------------------
+" disable AutoSave on Vim startup
+let g:auto_save = 0
+" do not save while in insert mode
+let g:auto_save_in_insert_mode = 0
+" do not display auto-save time
+" let g:auto_save_silent = 1
