@@ -202,27 +202,6 @@ nmap <silent>,scp       :SQLU_CreateProcedure<CR>
 
 
 "--------------------------------------------------------------------------------
-"プラグインAlignのメニュー非表示
-:let g:DrChipTopLvlMenu = ""
-"--------------------------------------------------------------------------------
-"プラグインsqlutilのメニュー非表示
-:let  g:sqlutil_default_menu_mode = 0
-
-
-""--------------------------------------------------------------------------------
-""データベースアクセス用設定（dbext.vim）
-""--------------------------------------------------------------------------------
-"let dbext_default_profile=""
-"let dbext_default_type="SQLSRV"
-"let dbext_default_user="sa"
-"let dbext_default_passwd="JA@dmin06"
-"let dbext_default_dbname="Temp"
-"let dbext_default_srvname="localhost\\SQLEXPRESS2014"
-
-"vimに表示する行数設定
-"let dbext_default_buffer_lines=80
-
-"--------------------------------------------------------------------------------
 "【lightline.vim】
 "--------------------------------------------------------------------------------
 
@@ -431,33 +410,6 @@ vmap <Enter> <Plug>(EasyAlign)
 let g:python_highlight_all = 1
 
 "--------------------------------------------------------------------------------
-"nerdcommenter Setting
-"--------------------------------------------------------------------------------
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = {
-        \ 'c': { 'left': '/**','right': '*/' },
-        \ 'xml': { 'left': '<%--', 'right': '--%>' }
-    \ }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-"--------------------------------------------------------------------------------
 "andymass/vim-matchup Setting
 "--------------------------------------------------------------------------------
 let g:matchup_matchparen_offscreen = {}
@@ -516,31 +468,6 @@ autocmd FileType cs let g:asyncrun_encs = "cp932"
 autocmd FileType java let g:asyncrun_encs = "cp932"
 
 
-"--------------------------------------------------------------------------------
-"Markdown-preview setting
-"--------------------------------------------------------------------------------
-autocmd FileType markdown noremap <silent><C-p>  :MarkdownPreview<CR>
-
-
-"--------------------------------------------------------------------------------
-"ryanoasis/vim-devicons setting
-"--------------------------------------------------------------------------------
-" フォルダアイコンを表示
-" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
-" " アイコン入力方法 : `[Ctrl+V]` > `[u]` > `e905`
-" let g:NERDTreeExtensionHighlightColor = {}
-" let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
-
-"--------------------------------------------------------------------------------
-" vim-indentLine setting
-"--------------------------------------------------------------------------------
-" " Disable the plugin on Vim startUp
-" let g:indent_guides_enable_on_vim_startup = 0
-"
-" set ts=4 sw=4 et
-" let g:indent_guides_start_level=2
-" let g:indent_guides_guide_size=1
 
 let g:indentLine_enabled = 0
 " let g:indentLine_char_list = ['│', '┊', '┆', '¦']
@@ -661,69 +588,6 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 " Disable The word under cursor:
 let g:vim_current_word#highlight_current_word = 0
 let g:vim_current_word#highlight_only_in_focused_window = 1
-
-"---------------------- vimspector setting----------------------
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-" Change some key mappings
-nmap <silent><F6> :call vimspector#RunToCursor()<CR>
-nmap <silent><F7> :call vimspector#Restart()<CR>
-nmap <silent><F8> :call vimspector#Reset()<CR>
-
-" カーソルにある変数の値を表示
-map <Leader>f  <Plug>VimspectorBalloonEval
-
-" Set debug configure file base dir
-let g:vimspector_base_dir = expand( '$VIM/vimfiles' )
-" Set the basic sizes
-let g:vimspector_sidebar_width = 60
-
-" vimfiles\after\syntax\syncolor.vimに自分用のハイライトが定義されている
-
-sign define vimspectorBP         text=\  texthl=ErrorMsg
-sign define vimspectorBPCond     text=\ 󿰉 texthl=ErrorMsg
-sign define vimspectorBPDisabled text=\  texthl=LineNr
-sign define vimspectorPC         text=\ 󿠕 texthl=MyDebugCurrentIndicator linehl=MyDebugCurrentLine
-sign define vimspectorPCBP       text=\ 󿠔 texthl=MyDebugCurrentIndicator linehl=MyDebugCurrentLine
-
-" 数値が大きいほうが優先度が高い（他の印に邪魔されない）
-let g:vimspector_sign_priority = {
-  \    'vimspectorBP':         997,
-  \    'vimspectorBPCond':     996,
-  \    'vimspectorBPDisabled': 995,
-  \    'vimspectorPCBP':       998,
-  \    'vimspectorPC':         999,
-  \ }
-
-" sign define vimspectorPC         text=\ 󿠕 texthl=MatchParen linehl=CursorLine
-" sign define vimspectorPCBP       text=\ 󿠔 texthl=MatchParen linehl=CursorLine
-
-function! CustomiseUI()
-    call win_gotoid( g:vimspector_session_windows.code )
-    " Clear the existing WinBar created by Vimspector
-    nunmenu WinBar
-    " Cretae our own WinBar
-    " nnoremenu WinBar.󿱢\ Stop :call vimspector#Stop()<CR>
-    nnoremenu WinBar.▶\ Continue :call vimspector#Continue()<CR>
-    nnoremenu WinBar.󿣣\ Pause :call vimspector#Pause()<CR>
-    nnoremenu WinBar.󿚼\ Next :call vimspector#StepOver()<CR>
-    nnoremenu WinBar.󿚺\ StepIn :call vimspector#StepInto()<CR>
-    nnoremenu WinBar.󿚻\ StepOut :call vimspector#StepOut()<CR>
-    nnoremenu WinBar.󿥘\ Restart :call vimspector#Restart()<CR>
-    nnoremenu WinBar.󿱢\ Stop :call vimspector#Reset()<CR>
-
-    " デバッグ時のハイライトを表示するため、現在行のハイライト設定をクリアする
-    set nocursorline nocursorcolumn
-endfunction
-
-augroup MyVimspectorUICustomistaion
-  autocmd!
-  autocmd User VimspectorUICreated call CustomiseUI()
-augroup END
-
-" let g:ycm_semantic_triggers =  {
-"   \   'VimspectorPrompt': [ '.', '->', ':', '<' ]
-" }
-
 
 
 "--------------------------------------------------------------------------------
