@@ -171,4 +171,7 @@ call plug#begin('$VIM/plugins')
     " vim_startify plugin
     Plug 'vim-scripts/vim-auto-save'
 
+    " vim commentary
+    Plug 'tpope/vim-commentary'
+
 call plug#end()

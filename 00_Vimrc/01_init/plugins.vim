@@ -637,3 +637,17 @@ let g:auto_save = 0
 let g:auto_save_in_insert_mode = 0
 " do not display auto-save time
 " let g:auto_save_silent = 1
+
+
+"----------------------------------------
+" Vim commentary Setting
+"----------------------------------------
+augroup comment
+    autocmd!
+    autocmd FileType vb setlocal commentstring='\ %s
+    autocmd FileType sql setlocal commentstring=--\ %s
+    autocmd FileType asp setlocal commentstring=<%--\ %s\ --%>
+    autocmd FileType aspvbs setlocal commentstring=<%--\ %s\ --%>
+    autocmd FileType dosbatch setlocal commentstring=rem\ %s
+    autocmd FileType gitconfig setlocal commentstring=#\ %s
+augroup END
