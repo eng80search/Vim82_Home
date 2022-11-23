@@ -309,14 +309,12 @@ tnoremap <C-o> <C-w>N<CR>
 " インサートモードでもundo
 " imap <M-u> <Esc>:undo<CR> i
 
-" インサートモードでもdd
-"imap <M-d><M-d> <Esc>dd<CR> i
-
-" インサートモードでもhjklで移動
-imap <M-h> <Left>
-imap <M-l> <Right>
-imap <M-k> <Up>
-imap <M-j> <Down>
+" insertモードでhjklで移動
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-b> <BS>
 
 " "--------------------------------------------------------------------------------
 " "Python36を有効にする。しないとpython35がないと怒られる
