@@ -39,6 +39,10 @@ call plug#begin('$VIM/plugins')
     " vim-surround.vim Vim plugin for Improved incremental search
     Plug 'tpope/vim-surround'
 
+
+    " vim async run plugin
+    Plug 'tpope/vim-dispatch'
+
     "" python3 Plugin :automatically formats Python code need Install jedi  Labrary from pip
     Plug 'tell-k/vim-autopep8'
 
