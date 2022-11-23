@@ -472,7 +472,7 @@ autocmd FileType java let g:asyncrun_encs = "cp932"
 let g:indentLine_enabled = 0
 " let g:indentLine_char_list = ['│', '┊', '┆', '¦']
 
-autocmd FileType html,js,javascript,python,vb IndentLinesEnable
+autocmd FileType html,js,javascript,python,vb,c IndentLinesEnable
 " autocmd FileType js IndentGuidesEnable
 
 " Vim8でvim-lspとasyncomplete関連でvue-language-serverを使う(細かいオプションは省略)
