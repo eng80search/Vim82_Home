@@ -4,104 +4,6 @@
 " Kaoriya対策
 "----------------------------------------
 
-"--------------------------------------------------------------------------------
-"NERDTree Setting
-"--------------------------------------------------------------------------------
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 0 "ファイルを開いたら閉じる場合は1
-let g:NERDTreeShowBookmarks=1 "ブックマーク初期表示
-let NERDTreeWinSize = 40 "Windowsサイズ設定
-let g:NERDTreeCopycmd= 'cp -r '
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-" lightlineを使うのでnerdtree自前のstatuslineを無効にする
-let g:NERDTreeStatusline = -1
-
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('vim',    'yellow',    'none', '#390088', '#282c34')
-call NERDTreeHighlightFile('java',   'yellow',    'none', '#fcdb79', '#282c34')
-call NERDTreeHighlightFile('json',   'blue',      'none', '#8a2be2', '#282c34')
-call NERDTreeHighlightFile('py',     'yellow',    'none', '#fcdb79', '#282c34')
-call NERDTreeHighlightFile('asp',    'yellow',    'none', '#B9B069', '#282c34')
-call NERDTreeHighlightFile('cs',     'yellow',    'none', '#c4f74f', '#282c34')
-call NERDTreeHighlightFile('js',     'Red',       'none', '#f0e68c', '#282c34')
-call NERDTreeHighlightFile('vue',    'Red',       'none', '#00CC99', '#282c34')
-call NERDTreeHighlightFile('htm',    'brown',     'none', '#ff7f50', '#282c34')
-call NERDTreeHighlightFile('html',   'brown',     'none', '#ff7f50', '#282c34')
-call NERDTreeHighlightFile('css',    'yellow',    'none', '#1e90ff', '#282c34')
-call NERDTreeHighlightFile('xml',    'brown',     'none', '#627009', '#282c34')
-call NERDTreeHighlightFile('htm',    'brown',     'none', '#dfb5f2', '#282c34')
-call NERDTreeHighlightFile('sql',    'blue',      'none', '#9bf76a', '#282c34')
-call NERDTreeHighlightFile('log',    'yellow',    'none', '#876712', '#282c34')
-call NERDTreeHighlightFile('vim',    'yellow',    'none', '#876712', '#282c34')
-call NERDTreeHighlightFile('xlsx',   'yellow',    'none', '#91938D', '#282c34')
-call NERDTreeHighlightFile('xls',    'yellow',    'none', '#91938D', '#282c34')
-call NERDTreeHighlightFile('xlsm',   'yellow',    'none', '#91938D', '#282c34')
-call NERDTreeHighlightFile('doc',    'yellow',    'none', '#91938D', '#282c34')
-call NERDTreeHighlightFile('docx',   'yellow',    'none', '#91938D', '#282c34')
-call NERDTreeHighlightFile('jpg',    'yellow',    'none', '#ffffe0', '#282c34')
-call NERDTreeHighlightFile('JPG',    'yellow',    'none', '#ffffe0', '#282c34')
-call NERDTreeHighlightFile('png',    'yellow',    'none', '#ffffe0', '#282c34')
-call NERDTreeHighlightFile('PNG',    'yellow',    'none', '#ffffe0', '#282c34')
-call NERDTreeHighlightFile('gif',    'yellow',    'none', '#A4A4A4', '#282c34')
-call NERDTreeHighlightFile('GIF',    'yellow',    'none', '#A4A4A4', '#282c34')
-call NERDTreeHighlightFile('config', 'yellow',    'none', '#fc3737', '#282c34')
-
-"--------------------------------------------------------------------------------
-"NERDTree FilePath AutoRefresh
-"--------------------------------------------------------------------------------
-function! NERDTreeAutoUpdate()
-    try
-
-        "処理対象がNERDTreeウィンドウ自分自分の場合は更新処理を行わない。
-        if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) == winnr()
-            return
-        endif
-
-        " Detect which plugins are open
-        if exists('t:NERDTreeBufName')
-            let s:nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
-        else
-            let s:nerdtree_open = 0
-        endif
-
-        if s:nerdtree_open
-            NERDTree
-        else
-            return
-        endif
-
-        "ウィンドウを戻す
-        if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) == winnr()
-            wincmd w
-        endif
-
-        NERDTreeFind
-
-        "ウィンドウを戻す
-        if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) == winnr()
-        wincmd w
-        endif
-
-    catch
-        echo "Error Happend!"
-    endtry
-
-endfunction
-
-autocmd BufWinEnter * call NERDTreeAutoUpdate()
-"close vim if the only window left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 特定のファイルではnerdtreeを表示する。このコマンドは BufWinEnterが正常に動作しないみたい
-" なので、asyncomplete Buffer Pluginを正常動作させるためにwincmd wを入れてBufWinEnterを強制発生させた
-autocmd BufWinEnter *.py,*.vue,*.js if winnr("$") == 1 && v:this_session == "" | NERDTree | wincmd w | endif
-" autocmd BufWinEnter *.py,*.vue,*.js if winnr("$") == 1 | NERDTree | endif
 
 "--------------------------------------------------------------------------------
 "vim-fzf Setting
@@ -140,14 +42,6 @@ augroup GrepCmd
     autocmd!
     autocmd QuickFixCmdPost vim,grep,make if len(getqflist()) != 0 | copen | endif
 augroup END
- 
-
-"--------------------------------------------------------------------------------
-"vim-nerdtree-syntax-highlight
-"--------------------------------------------------------------------------------
-" let g:NERDTreeFileExtensionHighlightFullName = 1
-" let g:NERDTreeExactMatchHighlightFullName = 1
-" let g:NERDTreePatternMatchHighlightFullName = 1
 
 "--------------------------------------------------------------------------------
 "MRU Setting
@@ -179,12 +73,6 @@ let g:session_autoload = 'no'
 nnoremap <silent><C-a> :TagbarToggle<CR>
 " ソートは不要にする
 let g:tagbar_sort = 0
-
-"--------------------------------------------------------------------------------
-"NerdTreeとTagbarの合体設定
-"--------------------------------------------------------------------------------
-" nmap <silent><C-s> :ToggleNERDTreeAndTagbar<CR>
-
 
 "--------------------------------------------------------------------------------
 "現在のウィンドウのカレントディレクトリを開いたファイルのパスで設定する
@@ -575,12 +463,6 @@ autocmd FileType vue syntax sync fromstart
 " vim-devicons Setting with Cica Font
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
-" アイコン入力方法 : `[Ctrl+V]` > `[u]` > `e905`
-let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
-let g:webdevicons_conceal_nerdtree_brackets = 1
-
-" Plugin 'E:\00_OurFamily\00_Develop\33_Git\00_vim82_Home\plugins\jsonformat'
 
 " mark操作
 " m.-> マーク追加削除 m(space)->すべてのマークを削除 m/->マークリスト一覧表示 `[ ->次のマークへジャンプ`

@@ -6,7 +6,7 @@ call plug#begin('$VIM/plugins')
     Plug 'ryanoasis/vim-devicons'
 
     " NERD Tree
-    Plug 'scrooloose/nerdtree'
+    " Plug 'scrooloose/nerdtree'
 
     "" nerdtree-execute
     " Plug 'ivalkeen/nerdtree-execute'
