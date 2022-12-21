@@ -223,7 +223,7 @@ set so=0
 set hlsearch
 "ハイライトの表示切り替え
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
-"nnoremap / /\v
+nnoremap / /\v
 
 ""--------------------------------------------------------------------------------
 ""python3 Setting
@@ -376,6 +376,7 @@ function! ResizeSplits()
 endfunction
 
 " netrwを開いたり閉じたりする関数
+let g:vexplore_width = 25
 function! NetrwToggle()
 
     " 現在のタブ及びWindowを退避する
@@ -406,11 +407,9 @@ function! NetrwToggle()
             if l:filetype == "netrw"
                 " netrwを閉じる
                 execute "clo"
+                " 何回か保存するとbuftype=nofileに設定され、保存できない場合は以下の設定を適応
                 call win_gotoid(l:current_win_id)
-                " gitで使用する場合、何回か本関数が実行されると、
-                " ファイルが保存できない場合は以下の設定を追加する
-                " set buftype=
-
+                set buftype=
                 return 0
             endif
 
@@ -420,12 +419,13 @@ function! NetrwToggle()
 
     " 退避したwindowに戻る
     call win_gotoid(l:current_win_id)
+
     " 全体幅の20%幅でnetrwを開く
-    execute "Vexplore 20"
-    call win_gotoid(l:current_win_id)
-    " gitで使用する場合、何回か本関数が実行されると、
-    " ファイルが保存できない場合は以下の設定を追加する
-    " set buftype=
+    if g:vexplore_width != ''
+        execute "Vexplore " . g:vexplore_width
+    else
+        execute "Vexplore 20"
+    endif
 
 endfunction
 
