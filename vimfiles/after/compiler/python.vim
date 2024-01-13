@@ -21,11 +21,11 @@ au QuickfixCmdPre make call QfMakeConvPre()
 
 let s:cpo_save = &cpo
 set cpo&vim
-
-set errorformat=
-      \%*\\sFile\ \"%f\"\\,\ line\ %l\\,\ %m,
-      \%*\\sFile\ \"%f\"\\,\ line\ %l,
-CompilerSet makeprg=python3\ %
+set errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+" set errorformat=
+"       \%*\\sFile\ \"%f\"\\,\ line\ %l\\,\ %m,
+"       \%*\\sFile\ \"%f\"\\,\ line\ %l,
+CompilerSet makeprg=python\ %
 
 let &cpo = s:cpo_save
 unlet s:cpo_save

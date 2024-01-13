@@ -24,11 +24,15 @@ if !exists("current_compiler")
   compiler python
 endif
 
- let b:next='\vdef\s+\w+\(\_.*\):'
- let b:prev='\vdef\s+\w+\(\_.*\):'
+ let b:func_next='\v^\s*def\s+\w+\(.+\):'
+ let b:class_next='\v^\s*class\s+.+:'
+ let b:next=b:func_next.'|'.b:class_next
 
  execute "nnoremap <silent> <buffer> ]] :call <SID>Python_jump(b:next, 'forward')<CR>"
- execute "nnoremap <silent> <buffer> [[ :call <SID>Python_jump(b:prev, 'backward')<CR>"
+ execute "nnoremap <silent> <buffer> [[ :call <SID>Python_jump(b:next, 'backward')<CR>"
+
+ execute "nnoremap <silent> <buffer> ]} :call <SID>Python_jump(b:class_next, 'forward')<CR>"
+ execute "nnoremap <silent> <buffer> [{ :call <SID>Python_jump(b:class_next, 'backward')<CR>"
 
  if !exists('*<SID>Python_jump')
      fun! <SID>Python_jump(pattern, mode)
