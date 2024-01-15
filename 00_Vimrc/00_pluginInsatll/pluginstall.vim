@@ -126,7 +126,7 @@ call plug#begin('$VIM/plugins')
     Plug 'maximbaz/lightline-ale'
 
     " add snippet feature in vim
-    Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips' #python snippets
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
@@ -164,7 +164,7 @@ call plug#begin('$VIM/plugins')
     Plug 'kshenoy/vim-signature'
 
     " jsonformat plugin 
-    Plug 'eng80search/jsonformat.vim'
+    " Plug 'eng80search/jsonformat.vim'
 
     " vim_current_word plugin 
     Plug 'dominikduda/vim_current_word'
