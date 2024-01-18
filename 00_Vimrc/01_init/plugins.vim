@@ -70,7 +70,7 @@ let g:session_autoload = 'no'
 "--------------------------------------------------------------------------------
 "Tagbarの設定
 "--------------------------------------------------------------------------------
-nnoremap <silent><M-a> :TagbarToggle<CR>
+nnoremap <silent><C-a> :TagbarToggle<CR>
 " ソートは不要にする
 let g:tagbar_sort = 0
 

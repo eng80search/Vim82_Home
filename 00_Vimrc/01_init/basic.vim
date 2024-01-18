@@ -317,10 +317,10 @@ inoremap <C-j> <Down>
 inoremap <C-b> <BS>
 
 " "--------------------------------------------------------------------------------
-" Python3を有効にする。しないとpython35がないと怒られる
+" "Python36を有効にする。しないとpython35がないと怒られる
 " "--------------------------------------------------------------------------------
-let g:python3_host_prog = 'C:\Python38\python.exe'
-set pythonthreedll=python38.dll
+" let g:python3_host_prog = 'C:\Python38\python.exe'
+" set pythonthreedll=python38.dll
 
 " "--------------------------------------------------------------------------------
 " "!コマンドをcmdからWindows

@@ -1,4 +1,4 @@
-*map.txt*       For Vim version 8.2.  Last change: 2019 Dec 19
+*map.txt*       For Vim version 8.2.  Last change: 2020 Apr 23
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -845,8 +845,9 @@ Without modifyOtherKeys <C-[> and <C-S-{> are indistinguishable from Esc.
 
 A known side effect effect is that in Insert mode the raw escape sequence is
 inserted after the CTRL-V key.  This can be used to check whether
-modifyOtherKeys is enabled: In Insert mode type CTRL-V CTRL-V, if you get
-one byte then modifyOtherKeys is off, if you get <1b>27;5;118~ then it is on.
+modifyOtherKeys is enabled: In Insert mode type CTRL-SHIFT-V CTRL-V, if you
+get one byte then modifyOtherKeys is off, if you get <1b>27;5;118~ then it is
+on.
 
 When the 'esckeys' option is off, then modifyOtherKeys will be disabled in
 Insert mode to avoid every key with a modifier causing Insert mode to end.
@@ -1491,7 +1492,7 @@ The valid escape sequences are
 	<bang>	(See the '-bang' attribute) Expands to a ! if the
 		command was executed with a ! modifier, otherwise
 		expands to nothing.
-						*<mods>*
+						*<mods>* *:command-modifiers*
 	<mods>  The command modifiers, if specified. Otherwise, expands to
 		nothing. Supported modifiers are |:aboveleft|, |:belowright|,
 		|:botright|, |:browse|, |:confirm|, |:hide|, |:keepalt|,

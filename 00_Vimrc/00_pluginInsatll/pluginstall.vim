@@ -5,19 +5,6 @@ call plug#begin('$VIM/plugins')
     " Adds file type icons to Vim plugins
     Plug 'ryanoasis/vim-devicons'
 
-    " NERD Tree
-    " Plug 'scrooloose/nerdtree'
-
-    "" nerdtree-execute
-    " Plug 'ivalkeen/nerdtree-execute'
-
-    " NERD commenter
-    " Plug 'scrooloose/nerdcommenter'
-
-    " vim-session
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-session'
-
     "tagbar
     Plug 'majutsushi/tagbar'
 
@@ -27,18 +14,11 @@ call plug#begin('$VIM/plugins')
     " SQL Formatting
     Plug 'mattn/vim-sqlfmt'
 
-    " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-    Plug 'junegunn/vim-easy-align'
-
-    " vim-bufonly.vim Delete all the buffers except the current buffer
-    Plug 'schickling/vim-bufonly'
-
     " vim-singleton.vim Uses Vim with singleton
     Plug 'thinca/vim-singleton'
 
     " vim-surround.vim Vim plugin for Improved incremental search
     Plug 'tpope/vim-surround'
-
 
     " vim async run plugin
     Plug 'tpope/vim-dispatch'
@@ -59,8 +39,6 @@ call plug#begin('$VIM/plugins')
     " Plug 'tmhedberg/matchit'
     Plug 'andymass/vim-matchup'
 
-    "A Vim plugin for Windows PowerShell support
-    " Plug 'PProvost/vim-ps1'
 
     "improved Javascript indentation and syntax support in Vim
     Plug 'pangloss/vim-javascript'
@@ -96,26 +74,13 @@ call plug#begin('$VIM/plugins')
     " have nodejs and yarn
     " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-    " " Syntax checking Plugin
-    " Plug 'vim-syntastic/syntastic'
-
-    " PluginのYouCompleteMeと衝突するため、無効化
-    " " python3 Plugin : autocompletion need Install jedi Labrary from pip
-    " Plug 'davidhalter/jedi-vim'
-
     " pt.vim Vim plugin for the platinum_search
     Plug 'nazo/pt.vim'
-
-
-    " A VIM multi-language debugger plugin
-    " Plug 'jayli/vim-easydebugger'
-
-    " " visually displaying indent levels in Vim
-    " Plug 'nathanaelkane/vim-indent-guides'
 
     " A vim plugin to display the indention levels with thin vertical lines
     Plug 'Yggdroot/indentLine'
 
+" ----------------------------------------
     " vim-lsp plugin
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
@@ -125,29 +90,22 @@ call plug#begin('$VIM/plugins')
     Plug 'dense-analysis/ale'
     Plug 'maximbaz/lightline-ale'
 
-    " add snippet feature in vim
-    Plug 'SirVer/ultisnips' #python snippets
-    Plug 'honza/vim-snippets'
-    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-
-
-    " Viewer&Finder for LSP symbols and tags
-    Plug 'liuchengxu/vista.vim'
-
     " add autocompletion feature in vim
     Plug 'prabirshrestha/asyncomplete.vim'
-    " Plug 'eng80search/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'eng80search/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
 
+    " add python snippet and autocompletion feature in vim
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+" ----------------------------------------
 
     " Vim syntax highlighting for Vue components
     " And also work in ALE with install eslint and eslint-plugin-vue using npm
     Plug 'posva/vim-vue'
-
-    " Plug 'puremourning/vimspector'
 
     " A Vim plugin for Prettier
     Plug 'prettier/vim-prettier'
@@ -157,25 +115,22 @@ call plug#begin('$VIM/plugins')
                 \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 
-    " Japanese Vim Help
-    Plug 'vim-jp/vimdoc-ja'
-    
     " Display and vavigate marks
     Plug 'kshenoy/vim-signature'
 
-    " jsonformat plugin 
+    " " jsonformat plugin 
     " Plug 'eng80search/jsonformat.vim'
 
     " vim_current_word plugin 
     Plug 'dominikduda/vim_current_word'
 
     " vim_startify plugin
-    Plug 'mhinz/vim-startify'
-
-    " vim_startify plugin
     Plug 'vim-scripts/vim-auto-save'
 
     " vim commentary
     Plug 'tpope/vim-commentary'
+
+    " " vim session manager
+    " Plug 'eng80search/vim-session.vim'
 
 call plug#end()
