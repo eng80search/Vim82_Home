@@ -1,6 +1,6 @@
 
 "----------------------------------------
-" 2017年5月25日版
+" 2024年01月19日版
 " Kaoriya対策
 "----------------------------------------
 
@@ -280,17 +280,6 @@ map g/ <Plug>(incsearch-stay)
 " " Pt! session.\"acuvuepc\.freeword\".
 " " 注意：括弧は「.」で検索する。なぜか\でエスケープできない
 
-"--------------------------------------------------------------------------------
-"vim-easy-align Setting
-"--------------------------------------------------------------------------------
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
 
 "--------------------------------------------------------------------------------
 "vim-python/python-syntax Setting
@@ -470,45 +459,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 " Disable The word under cursor:
 let g:vim_current_word#highlight_current_word = 0
 let g:vim_current_word#highlight_only_in_focused_window = 1
-
-
-"--------------------------------------------------------------------------------
-"Startify Setting
-"--------------------------------------------------------------------------------
-
-let g:startify_files_number = 10
-let g:startify_custom_indices = ['f', 'j', 'd', 'k', 's',
-                               \ 'l', 'a', ';', 'g', 'h']
-
-let g:startify_session_autoload = 1
-
-let g:startify_list_order = [
-        \ ['  Recently used files:'],
-        \ 'files',
-        \ ['  Recently used files(Current directory):'],
-        \ 'dir',
-        \ ['󿘵  Session:'],
-        \ 'sessions',
-        \ ['󿜺  Bookmarks:'],
-        \ 'bookmarks',
-        \ ]
-let g:startify_bookmarks = ["E:\\00_OurFamily\\00_Develop\\33_MyGit\\11_MyScript",
-                          \ "E:\\00_OurFamily\\00_Develop\\33_MyGit\\00_vim82_Home\\_vimrc",
-                          \ "E:\\00_OurFamily\\00_Develop\\33_MyGit\\00_vim82_Home\\00_Vimrc\\00_pluginInsatll\\pluginstall.vim"
-                          \]
-
-let g:startify_custom_header = [
-            \'                                                           ',
-            \'  /$$    /$$ /$$                      /$$$$$$      /$$$$$$ ',
-            \' | $$   | $$|__/                     /$$__  $$    /$$__  $$',
-            \' | $$   | $$ /$$ /$$$$$$/$$$$       | $$  \ $$   |__/  \ $$',
-            \' |  $$ / $$/| $$| $$_  $$_  $$      |  $$$$$$/     /$$$$$$/',
-            \'  \  $$ $$/ | $$| $$ \ $$ \ $$       >$$__  $$    /$$____/ ',
-            \'   \  $$$/  | $$| $$ | $$ | $$      | $$  \ $$   | $$      ',
-            \'    \  $/   | $$| $$ | $$ | $$      |  $$$$$$//$$| $$$$$$$$',
-            \'     \_/    |__/|__/ |__/ |__/       \______/|__/|________/',
-            \'                                                           ',
-    \]
+hi CurrentWordTwins guibg=#696969
 
 "----------------------------------------
 " AutoSave plugin Setting
@@ -533,3 +484,8 @@ augroup comment
     autocmd FileType dosbatch setlocal commentstring=rem\ %s
     autocmd FileType gitconfig setlocal commentstring=#\ %s
 augroup END
+
+" augroup sessionStart
+"     autocmd!
+"     autocmd SessionLoadPost * so $VIM\_vimrc
+" augroup END

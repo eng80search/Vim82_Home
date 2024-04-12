@@ -11,7 +11,6 @@
 "   silent! source $VIMRUNTIME/vimrc_example.vim
 " endif
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""日本語版のHelpを優先
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,7 +111,7 @@ augroup highlightIdegraphicSpace
 augroup END
 
 " Javaのハイライト設定
-:let java_highlight_all=1
+" :let java_highlight_all=1
 
 "インデントをTabではなくスペース４つで揃える
 set tabstop=4
@@ -224,6 +223,7 @@ set hlsearch
 "ハイライトの表示切り替え
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 nnoremap / /\v
+set incsearch
 
 ""--------------------------------------------------------------------------------
 ""python3 Setting

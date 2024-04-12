@@ -124,7 +124,7 @@ call plug#begin('$VIM/plugins')
     " vim_current_word plugin 
     Plug 'dominikduda/vim_current_word'
 
-    " vim_startify plugin
+    " auto save plugin
     Plug 'vim-scripts/vim-auto-save'
 
     " vim commentary
